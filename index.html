@@ -122,21 +122,11 @@
             padding: 24px;
             transition: box-shadow 0.2s ease;
             
+            /* Flexbox settings to force bottom alignment */
             display: flex;
             flex-direction: column;
             height: 100%; 
             box-sizing: border-box; 
-        }
-
-        .project-link {
-            font-size: 0.85rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            
-            margin-top: auto;
-            align-self: flex-start;
-            padding-top: 16px;
         }
 
         .project-card:hover {
@@ -171,6 +161,11 @@
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
+            
+            /* Pushes the link to the bottom */
+            margin-top: auto;
+            align-self: flex-start;
+            padding-top: 16px;
         }
 
         /* EXPERIENCE LIST */
@@ -229,8 +224,8 @@
         <h1>Yazan Aesmael</h1>
         <div class="subtitle">Software Engineer | Android, KMM & Hardware Integration</div>
         <div class="contact-links">
-            <a href="https://github.com/YazanAesmael">GitHub</a>
-            <a href="https://linkedin.com/in/yazanaesmael">LinkedIn</a>
+            <a href="https://github.com/YazanAesmael" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://linkedin.com/in/yazanaesmael" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="mailto:yazanaesmael@gmail.com">yazanaesmael@gmail.com</a>
         </div>
     </header>
@@ -257,18 +252,18 @@
                     Implemented custom gesture recognition algorithms using MediaPipe landmarks to map hand movements 
                     to system-level dispatch events (clicks/scrolls) with high precision.
                 </p>
-                <a href="https://github.com/YazanAesmael/RealHandsFree" class="project-link">View Source Code</a>
+                <a href="https://github.com/YazanAesmael/RealHandsFree" class="project-link" target="_blank" rel="noopener noreferrer">View Source Code</a>
             </div>
 
             <div class="project-card">
                 <h3 class="project-title">EchoVerse</h3>
-                <div class="project-tech">Kotlin Multiplatform • Gen AI • RAG</div>
+                <div class="project-tech">Kotlin Multiplatform • Jetbrains Koog Agents • RAG</div>
                 <p class="project-desc">
                     A modular KMP application that synthesizes "digital twins" from chat history. 
                     Architected a local RAG (Retrieval-Augmented Generation) pipeline using SQLDelight and 
                     Google Gemini to enable context-aware, low-latency persona simulation.
                 </p>
-                <a href="https://github.com/YazanAesmael/EchoVerse" class="project-link">View Research Repository</a>
+                <a href="https://github.com/YazanAesmael/EchoVerse" class="project-link" target="_blank" rel="noopener noreferrer">View Research Repository</a>
             </div>
 
             <div class="project-card">
@@ -279,7 +274,7 @@
                     Engineered a dual-mode communication engine that seamlessly switches between BLE and USB transports, 
                     ensuring data integrity for high-precision field hardware.
                 </p>
-                <a href="https://github.com/YazanAesmael/OpenSurvey" class="project-link">View Enterprise Framework</a>
+                <a href="https://github.com/YazanAesmael/OpenSurvey" class="project-link" target="_blank" rel="noopener noreferrer">View Enterprise Framework</a>
             </div>
         </div>
     </section>
@@ -298,6 +293,8 @@
                 <li>Architected a high-performance live cricket application serving 100,000+ active users, utilizing Jetpack Compose for UI rendering and Socket.IO for real-time data streaming.</li>
                 <li>Optimized network performance by implementing custom server-side payload compression (95% reduction) and a robust client-side caching strategy.</li>
                 <li>Established the CI/CD pipeline using GitHub Actions to automate testing and release cycles, reducing deployment time by 40%.</li>
+                <li>Led and mentored a team of junior developers, facilitating code reviews and enforcing clean architecture standards to accelerate team velocity.</li>
+                <li>Spearheaded performance optimization using Android Profiler, Baseline Profiles, and R8 shrinking, resulting in a 50% improvement in app startup time and runtime efficiency.</li>
             </ul>
         </div>
 
@@ -343,7 +340,7 @@
             <div class="skill-category">
                 <h3>Android & Mobile</h3>
                 <ul>
-                    <li>Jetpack Compose</li>
+                    <li>Jetpack Compose & CMP</li>
                     <li>Kotlin Multiplatform (KMM)</li>
                     <li>Coroutines & Flow</li>
                     <li>Dagger Hilt / Koin</li>
@@ -352,7 +349,7 @@
             <div class="skill-category">
                 <h3>Architecture & Systems</h3>
                 <ul>
-                    <li>Clean Architecture / MVVM</li>
+                    <li>Clean Architecture / Modularity</li>
                     <li>BLE / Bluetooth Classic</li>
                     <li>Protocol Buffers</li>
                     <li>CI/CD (GitHub Actions)</li>
@@ -361,8 +358,9 @@
             <div class="skill-category">
                 <h3>AI & Machine Learning</h3>
                 <ul>
+                    <li>TensorFlow Lite</li>
                     <li>Google MediaPipe</li>
-                    <li>Genkit & Gemini API</li>
+                    <li>Koog & Gemini API</li>
                     <li>On-Device RAG</li>
                 </ul>
             </div>
