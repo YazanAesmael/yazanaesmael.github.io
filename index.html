@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazan Aesmael | Android & KMM Engineer</title>
+    <style>
+        :root {
+            --primary: #00E676; /* Android Green */
+            --bg: #121212;
+            --surface: #1E1E1E;
+            --text: #E0E0E0;
+            --text-secondary: #A0A0A0;
+            --accent: #2979FF;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+        }
+        h1 { margin: 0; font-size: 2.5rem; color: var(--primary); }
+        .tagline { font-size: 1.2rem; color: var(--text-secondary); margin-top: 10px; }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        section { margin: 50px 0; }
+        h2 { border-bottom: 2px solid var(--surface); padding-bottom: 10px; color: var(--primary); }
+        
+        /* Grid for Projects */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: var(--surface);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--primary); }
+        .card h3 { margin-top: 0; color: #fff; }
+        .tech-stack {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Experience Section */
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary);
+        }
+        .role { font-weight: bold; font-size: 1.1rem; }
+        .company { color: var(--text-secondary); font-style: italic; }
+        
+        /* Skills Tags */
+        .skill-tag {
+            background-color: var(--surface);
+            border: 1px solid var(--text-secondary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        footer { text-align: center; padding: 40px; color: var(--text-secondary); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Yazan Aesmael</h1>
+    <div class="tagline">Native Android Engineer | Multiplatform (KMM/CMP) | BLE & Hardware Integration</div>
+    <div style="margin-top: 20px;">
+        <a href="resume.pdf" target="_blank" class="btn">Download Resume (PDF)</a>
+        <a href="https://github.com/YazanAesmael" class="btn btn-outline">GitHub Profile</a>
+        <a href="https://www.upwork.com/freelancers/~018f58d5b1a9c412aa" class="btn btn-outline">Upwork</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I am a product-minded Software Engineer specializing in high-performance Android applications. 
+            My expertise bridges the gap between software and hardware, focusing on <strong>Bluetooth Low Energy (BLE)</strong>, 
+            <strong>IoT integrations</strong>, and <strong>Kotlin Multiplatform</strong> development. 
+            Currently leveraging Generative AI (Genkit/Gemini) to build next-generation mobile experiences.
+        </p>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Arsenal</h2>
+        <div>
+            <span class="skill-tag">Kotlin & Java</span>
+            <span class="skill-tag">Jetpack Compose</span>
+            <span class="skill-tag">KMM & CMP</span>
+            <span class="skill-tag">BLE & IoT Integration</span>
+            <span class="skill-tag">Clean Architecture & MVVM</span>
+            <span class="skill-tag">Google Genkit & Gemini API</span>
+            <span class="skill-tag">MediaPipe & Computer Vision</span>
+            <span class="skill-tag">Reverse Engineering</span>
+        </div>
+    </section>
+
+    <section id="featured-projects">
+        <h2>Featured Projects</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <h3>🧠 EchoVerse</h3>
+                <span class="tech-stack">KMM • Compose Multiplatform • Koog AI • RAG</span>
+                <p>A deeply personal AI companion app that creates a "digital twin" of a person based on chat history. Features a multi-stage AI workflow including personality synthesis, RAG-based long-term memory, and dynamic context funnels.</p>
+                <small style="color: #666;">(Private Research Repository)</small>
+            </div>
+
+            <div class="card">
+                <h3>👋 RealHandsFree</h3>
+                <span class="tech-stack">Android • MediaPipe • CameraX • Accessibility Service</span>
+                <p>Touch-free Android navigation tool. Uses computer vision to track hand gestures (Pinch/Drag) via the front camera to control the system cursor, click, and scroll over any app.</p>
+                <a href="https://github.com/YazanAesmael/RealHandsFree" class="card-link">View Repository &rarr;</a>
+            </div>
+
+            <div class="card">
+                <h3>📡 OpenSurvey</h3>
+                <span class="tech-stack">Android • BLE & USB • Clean Arch • White-Label</span>
+                <p>Modular surveying framework for capturing data from custom hardware. Features dual-mode connectivity (BLE/USB), a hardware abstraction layer, and real-time debug consoles.</p>
+                <a href="https://github.com/YazanAesmael/OpenSurvey" class="card-link">View Repository &rarr;</a>
+            </div>
+
+            <div class="card">
+                <h3>✈️ FLAI</h3>
+                <span class="tech-stack">Genkit • Next.js • React • AI Agents</span>
+                <p>Intelligent flight search platform using a conversational AI interface. Orchestrates multi-step LLM flows to validate search parameters and fetch real-time flight data.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Professional Experience</h2>
+        
+        <div class="timeline-item">
+            <div class="role">Lead Android Engineer</div>
+            <div class="company">Lifease Solutions | Nov 2023 - Present</div>
+            <p>Led development of a high-performance live cricket app (100k+ users). Optimized server-side compression by 95% and implemented socket-based real-time updates.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="role">Freelance Android & IoT Engineer</div>
+            <div class="company">Upwork | Global Clients</div>
+            <p>Specialized in BLE and hardware integration projects. Developed custom firmware communication protocols and stable Android applications for international IoT clients.</p>
+            <a href="https://www.upwork.com/freelancers/~018f58d5b1a9c412aa" class="card-link" style="font-size: 0.9rem;">View Upwork Profile &rarr;</a>
+        </div>
+
+        <div class="timeline-item">
+            <div class="role">Android Engineer</div>
+            <div class="company">TestRight Nanosystems | July 2023 - Aug 2023</div>
+            <p>Engineered full-stack IoT solutions for biotech devices. Programmed ESP32 (C++) microcontrollers and built Android interfaces for real-time data visualization.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="role">Android Intern</div>
+            <div class="company">Zucol | March 2023 - July 2023</div>
+            <p>Migrated legacy Java apps to Kotlin and delivered a multi-module construction management application.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Yazan Aesmael. Built with Kotlin... wait, just HTML this time.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
