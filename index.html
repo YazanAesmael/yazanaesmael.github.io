@@ -113,6 +113,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
+            margin-top: 24px;
         }
 
         .project-card {
@@ -222,11 +223,10 @@
 <div class="container">
     <header>
         <h1>Yazan Aesmael</h1>
-        <div class="subtitle">Software Engineer | Android, KMM & Hardware Integration</div>
+        <div class="subtitle">Lead Software Engineer | Android, KMM & Hardware Integration</div>
         <div class="contact-links">
             <a href="https://github.com/YazanAesmael" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://www.linkedin.com/in/yazan-aesmael/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://www.upwork.com/freelancers/~018f58d5b1a9c412aa?mp_source=share" target="_blank" rel="noopener noreferrer">UpWork</a>
             <a href="mailto:yazanaesmael@gmail.com">yazanaesmael@gmail.com</a>
         </div>
     </header>
@@ -234,69 +234,11 @@
     <section>
         <h2>Professional Summary</h2>
         <p>
-            I understand the Android Framework under the hood. This allows me to optimize performance, secure the data, and ensure hardware/software work in perfect sync.
+            I understand the Android Framework under the hood. This allows me to optimize performance, secure data, and ensure hardware and software work in perfect sync.
         </p>
-        <p>I specialize in the following areas:</p>
-        <ul class="exp-details">
-            <li><strong>Real-time Systems:</strong> High-concurrency apps with sub-second data synchronization (Ktor, Sockets, gRPC).</li>
-            <li><strong>Multiplatform:</strong> Native KMP & Compose Multiplatform for Android, iOS, and Desktop.</li>
-            <li><strong>Performance:</strong> Eliminating UI Jank, memory leaks, and battery drain using Android Profiler, Layout Inspector, and automated testing via UI Automator.</li>
-            <li><strong>Hardware & IoT:</strong> App integration with BLE/USB and custom hardware interfacing (ESP32/Raspberry Pi/RTK).</li>
-            <li><strong>Advanced Architecture:</strong> Building or migrating to scalable multi-module projects with custom Gradle Convention Plugins.</li>
-            <li><strong>Security Auditing:</strong> Reverse engineering, network/local data inspection (Frida/MITM), identifying business logic vulnerabilities and privilege escalation protection.</li>
-            <li><strong>System Automation:</strong> Accessibility Services and Background Services for advanced OS-level functionality.</li>
-            <li><strong>CI/CD & DevOps:</strong> Automating the full build-test-release cycle via GitHub Actions, Bitbucket Pipelines, and Bitrise.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Engineering Showcase</h2>
-        <div class="project-grid">
-
-            <div class="project-card">
-                <h3 class="project-title">JetOverlay SDK</h3>
-                <div class="project-tech">Android SDK • Jetpack Compose • WindowManager</div>
-                <p class="project-desc">
-                    A lightweight, Compose-first Android SDK for managing floating system overlays. 
-                    Engineered a robust architecture decoupling window management from UI content, 
-                    featuring physics-based dragging, isolated ViewModel scopes per overlay, and process resilience via foreground services.
-                </p>
-                <a href="https://github.com/YazanAesmael/JetOverlay" class="project-link" target="_blank" rel="noopener noreferrer">View SDK Repository</a>
-            </div>
-            
-            <div class="project-card">
-                <h3 class="project-title">RealHandsFree</h3>
-                <div class="project-tech">Android • MediaPipe • Accessibility Service</div>
-                <p class="project-desc">
-                    An accessibility tool enabling touch-free Android navigation via computer vision. 
-                    Implemented custom gesture recognition algorithms using MediaPipe landmarks to map hand movements 
-                    to system-level dispatch events (clicks/scrolls) with high precision.
-                </p>
-                <a href="https://github.com/YazanAesmael/RealHandsFree" class="project-link" target="_blank" rel="noopener noreferrer">View Source Code</a>
-            </div>
-
-            <div class="project-card">
-                <h3 class="project-title">EchoVerse</h3>
-                <div class="project-tech">Kotlin Multiplatform • Jetbrains Koog Agents • RAG</div>
-                <p class="project-desc">
-                    A modular KMP application that synthesizes "digital twins" from chat history. 
-                    Architected a local RAG (Retrieval-Augmented Generation) pipeline using SQLDelight and 
-                    Google Gemini to enable context-aware, low-latency persona simulation.
-                </p>
-                <a href="https://github.com/YazanAesmael/EchoVerse" class="project-link" target="_blank" rel="noopener noreferrer">View Research Repository</a>
-            </div>
-
-            <div class="project-card">
-                <h3 class="project-title">OpenSurvey</h3>
-                <div class="project-tech">Clean Architecture • BLE • HAL</div>
-                <p class="project-desc">
-                    A white-label surveying platform featuring a robust Hardware Abstraction Layer (HAL).
-                    Engineered a dual-mode communication engine that seamlessly switches between BLE and USB transports, 
-                    ensuring data integrity for high-precision field hardware.
-                </p>
-                <a href="https://github.com/YazanAesmael/OpenSurvey" class="project-link" target="_blank" rel="noopener noreferrer">View Enterprise Framework</a>
-            </div>
-        </div>
+        <p>
+           I specialize in Real-time Systems, Native KMP, and Hardware Integration (BLE/USB). I build scalable multi-module projects and handle everything from security auditing to CI/CD automation. I focus on eliminating UI jank and battery drain using tools like Android Profiler.
+        </p>
     </section>
 
     <section>
@@ -310,24 +252,24 @@
                 <span class="date">Nov 2023 - Present</span>
             </div>
             <ul class="exp-details">
-                <li>Architected a high-performance live cricket application serving 100,000+ active users, utilizing Jetpack Compose for UI rendering and Socket.IO for real-time data streaming.</li>
-                <li>Optimized network performance by implementing custom server-side payload compression (95% reduction) and a robust client-side caching strategy.</li>
-                <li>Established the CI/CD pipeline using GitHub Actions to automate testing and release cycles, reducing deployment time by 40%.</li>
-                <li>Led and mentored a team of junior developers, facilitating code reviews and enforcing clean architecture standards to accelerate team velocity.</li>
-                <li>Spearheaded performance optimization using Android Profiler, Baseline Profiles, and R8 shrinking, resulting in a 50% improvement in app startup time and runtime efficiency.</li>
+                <li>Built a high-performance live cricket application for 100,000+ active users. Used Jetpack Compose for UI and Socket.IO for real-time streaming.</li>
+                <li>Improved network performance by compressing server payloads (95% reduction) and setting up a solid client-side caching strategy.</li>
+                <li>Set up the CI/CD pipeline using GitHub Actions to automate testing and releases, cutting deployment time by 40%.</li>
+                <li>Mentored junior developers and ran code reviews to help the team move faster and write cleaner code.</li>
+                <li>Led performance improvements using Android Profiler and R8 shrinking, which improved app startup time and efficiency by 50%.</li>
             </ul>
         </div>
 
         <div class="experience-item">
             <div class="exp-header">
                 <div>
-                    <span class="role">Technical Consultant (IoT & Mobile)</span> | <span class="company">Independent / Upwork</span>
+                    <span class="role">Independent Senior Engineer</span> | <span class="company">Consultant</span>
                 </div>
                 <span class="date">Dec 2023 - Present</span>
             </div>
             <ul class="exp-details">
-                <li>Delivered specialized IoT solutions for international clients, focusing on stable BLE communication layers for custom hardware integration.</li>
-                <li>Developed full-stack mobile applications requiring complex state management and hardware-software synchronization.</li>
+                <li>Delivered specialized IoT solutions for international clients, focusing on stable BLE connections for custom hardware integration.</li>
+                <li>Developed full-stack mobile applications that required complex state management and hardware-software synchronization.</li>
             </ul>
         </div>
 
@@ -339,9 +281,55 @@
                 <span class="date">July 2023 - Aug 2023</span>
             </div>
             <ul class="exp-details">
-                <li>Engineered an end-to-end biotech data capture system. Developed the Android client interface and programmed ESP32 firmware (C++) to ensure low-latency data transmission.</li>
-                <li>Implemented real-time graphing libraries to visualize spectrometer data with high refresh rates.</li>
+                <li>Built an end-to-end biotech data capture system. Created the Android client interface and wrote ESP32 firmware (C++) for low-latency data transmission.</li>
+                <li>Used real-time graphing libraries to visualize spectrometer data with high refresh rates.</li>
             </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Engineering Showcase</h2>
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h3 class="project-title">JetOverlay SDK</h3>
+                <div class="project-tech">Android SDK • Jetpack Compose • WindowManager</div>
+                <p class="project-desc">
+                    A lightweight, Compose-first Android SDK for managing floating system overlays. 
+                    I separated the window management from the UI content, added physics-based dragging, and ensured process resilience via foreground services.
+                </p>
+                <a href="https://github.com/YazanAesmael/JetOverlay" class="project-link" target="_blank" rel="noopener noreferrer">View SDK Repository</a>
+            </div>
+            
+            <div class="project-card">
+                <h3 class="project-title">RealHandsFree</h3>
+                <div class="project-tech">Android • MediaPipe • Accessibility Service</div>
+                <p class="project-desc">
+                    An accessibility tool for touch-free Android navigation. 
+                    I wrote custom gesture recognition algorithms using MediaPipe landmarks to map hand movements to clicks and scrolls with high precision.
+                </p>
+                <a href="https://github.com/YazanAesmael/RealHandsFree" class="project-link" target="_blank" rel="noopener noreferrer">View Source Code</a>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">EchoVerse</h3>
+                <div class="project-tech">Kotlin Multiplatform • Koog Agents • RAG</div>
+                <p class="project-desc">
+                    A modular KMP app that creates "digital twins" from chat history. 
+                    I built a local RAG pipeline using SQLDelight and Google Gemini for context-aware, low-latency persona simulation.
+                </p>
+                <a href="https://github.com/YazanAesmael/EchoVerse" class="project-link" target="_blank" rel="noopener noreferrer">View Research Repository</a>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">OpenSurvey</h3>
+                <div class="project-tech">Clean Architecture • BLE • HAL</div>
+                <p class="project-desc">
+                    A white-label surveying platform with a Hardware Abstraction Layer (HAL).
+                    I built a dual-mode communication engine that switches between BLE and USB to ensure data integrity for field hardware.
+                </p>
+                <a href="https://github.com/YazanAesmael/OpenSurvey" class="project-link" target="_blank" rel="noopener noreferrer">View Enterprise Framework</a>
+            </div>
         </div>
     </section>
 
