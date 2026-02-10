@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yazan Aesmael | Software Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a73e8;
-            --text-primary: #202124;
-            --text-secondary: #5f6368;
-            --bg-color: #ffffff;
-            --surface-color: #f8f9fa;
-            --border-color: #dadce0;
+            /* Dark Theme Variables matching the screenshot style */
+            --bg-color: #0B1120;
+            --card-bg: #1E293B;
+            --card-hover: #2D3D53;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --accent-color: #60A5FA; /* Light Blue */
+            --border-color: #334155;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: var(--font-family);
             background-color: var(--bg-color);
             color: var(--text-primary);
             margin: 0;
@@ -31,16 +34,28 @@
             padding: 40px 20px;
         }
 
+        /* LINKS */
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #93C5FD;
+            text-decoration: underline;
+        }
+
         /* HEADER */
         header {
             margin-bottom: 60px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 40px;
+            text-align: left;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 400;
+            font-size: 2.8rem;
+            font-weight: 700;
             margin: 0 0 10px 0;
             color: var(--text-primary);
             letter-spacing: -0.5px;
@@ -49,63 +64,159 @@
         .subtitle {
             font-size: 1.25rem;
             color: var(--text-secondary);
-            font-weight: 300;
+            font-weight: 400;
             margin-bottom: 24px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .contact-links a {
-            color: var(--primary-color);
-            text-decoration: none;
-            margin-right: 20px;
             font-weight: 500;
             font-size: 0.95rem;
+            padding: 6px 12px;
+            background: rgba(96, 165, 250, 0.1);
+            border-radius: 6px;
         }
 
         .contact-links a:hover {
-            text-decoration: underline;
+            background: rgba(96, 165, 250, 0.2);
+            text-decoration: none;
         }
 
-        /* SECTIONS */
+        /* SECTIONS GENERAL */
         section {
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 24px;
-            font-weight: 500;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 16px;
         }
 
         p {
             color: var(--text-secondary);
             max-width: 800px;
+            font-size: 1.05rem;
         }
 
-        /* SKILLS GRID */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        /* EXPERIENCE SECTION - NEW CARD STYLE */
+        .experience-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        
+        .experience-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
-        .skill-category h3 {
-            font-size: 1rem;
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .role {
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .company {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            background: rgba(255,255,255,0.05);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .exp-details {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .exp-details li {
+            color: #CBD5E1; /* Slightly lighter than secondary for readability */
             margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .exp-details li strong {
             color: var(--text-primary);
         }
 
-        .skill-category ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        /* SKILLS GRID - FROM SCREENSHOT STYLE */
+        .skills-grid-wrapper {
+            /* Wrapper for the categories */
         }
 
-        .skill-category li {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 6px;
+        .skill-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            display: inline-block;
+            border-bottom: 2px solid rgba(96, 165, 250, 0.3);
+            padding-bottom: 4px;
+        }
+
+        .grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 20px;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .skill-card:hover {
+            background-color: var(--card-hover);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* PROJECTS CARD GRID */
@@ -117,13 +228,11 @@
         }
 
         .project-card {
-            background: #fff;
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 24px;
-            transition: box-shadow 0.2s ease;
-            
-            /* Flexbox settings to force bottom alignment */
+            transition: all 0.2s ease;
             display: flex;
             flex-direction: column;
             height: 100%; 
@@ -131,81 +240,52 @@
         }
 
         .project-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-color: #bdc1c6;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--accent-color);
+            transform: translateY(-4px);
+            background-color: var(--card-hover);
         }
 
         .project-title {
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--text-primary);
             margin: 0 0 8px 0;
         }
 
         .project-tech {
             font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: var(--accent-color);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 12px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .project-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
+            font-size: 0.95rem;
+            color: #CBD5E1;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
         .project-link {
-            font-size: 0.85rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            
-            /* Pushes the link to the bottom */
+            font-size: 0.9rem;
+            font-weight: 600;
             margin-top: auto;
             align-self: flex-start;
-            padding-top: 16px;
+            padding: 8px 0;
+            display: inline-flex;
+            align-items: center;
         }
-
-        /* EXPERIENCE LIST */
-        .experience-item {
-            margin-bottom: 32px;
+        
+        .project-link::after {
+            content: " →";
+            transition: transform 0.2s;
         }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 8px;
-        }
-
-        .role {
-            font-weight: 500;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-        }
-
-        .company {
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        .date {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .exp-details {
-            margin: 0;
-            padding-left: 18px;
-        }
-
-        .exp-details li {
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            font-size: 0.95rem;
+        
+        .project-link:hover::after {
+            transform: translateX(4px);
         }
 
         /* FOOTER */
@@ -213,8 +293,27 @@
             border-top: 1px solid var(--border-color);
             padding-top: 40px;
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-align: center;
+            margin-top: 80px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .exp-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .grid-list {
+                grid-template-columns: 1fr 1fr;
+            }
+            h1 { font-size: 2.2rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .grid-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -244,7 +343,7 @@
     <section>
         <h2>Experience</h2>
 
-        <div class="experience-item">
+        <div class="experience-card">
             <div class="exp-header">
                 <div>
                     <span class="role">Lead Android Engineer</span> | <span class="company">Lifease Solutions</span>
@@ -252,15 +351,14 @@
                 <span class="date">Nov 2023 - Present</span>
             </div>
             <ul class="exp-details">
-                <li>Built a high-performance live cricket application for 100,000+ active users. Used Jetpack Compose for UI and Socket.IO for real-time streaming.</li>
-                <li>Improved network performance by compressing server payloads (95% reduction) and setting up a solid client-side caching strategy.</li>
-                <li>Set up the CI/CD pipeline using GitHub Actions to automate testing and releases, cutting deployment time by 40%.</li>
-                <li>Mentored junior developers and ran code reviews to help the team move faster and write cleaner code.</li>
-                <li>Led performance improvements using Android Profiler and R8 shrinking, which improved app startup time and efficiency by 50%.</li>
+                <li>Solely designed and delivered the application from zero to 100,000+ active users. Engineered a concurrent Socket.IO layer managing 5+ active connections per screen with zero thermal throttling on low-end devices.</li>
+                <li>Defined the data synchronization strategy, implementing full-stack GZIP compression (REST & Sockets), custom key encoding, and ETag caching. These decisions reduced server payloads by 95% and minimized data usage and costs.</li>
+                <li>Enforced strict performance budgets using Android Profiler and Automated UI Tests. Leveraged R8 shrinking, Baseline Profiles, and coding best practices to eliminate 90% of UI jank and improve startup time by 50%, ensuring consistent rendering under heavy load on any device.</li>
+                <li>Trusted in recruitment for Android and Product Design roles, using my deep product lifecycle knowledge to assess cross-functional fit for candidates. Onboarded and mentored 2 junior developers to independence, teaching advanced Coroutines, Flows, and Jetpack best practices to ensure clean, maintainable code and strict adherence to the design system.</li>
             </ul>
         </div>
 
-        <div class="experience-item">
+        <div class="experience-card">
             <div class="exp-header">
                 <div>
                     <span class="role">Independent Senior Engineer</span> | <span class="company">Consultant</span>
@@ -268,12 +366,14 @@
                 <span class="date">Dec 2023 - Present</span>
             </div>
             <ul class="exp-details">
-                <li>Delivered specialized IoT solutions for international clients, focusing on stable BLE connections for custom hardware integration.</li>
-                <li>Developed full-stack mobile applications that required complex state management and hardware-software synchronization.</li>
+                <li>Architected and deployed advanced CI/CD pipelines for multiple clients. Trained development teams on automation best practices, reducing deployment friction and standardizing release workflows.</li>
+                <li>Engineered full solutions integrating <strong> BLE, and USB</strong> protocols. Solved complex hardware-software synchronization challenges to ensure 99.9% data reliability in offline environments.</li>
+                <li>Designed and implemented expressive, advanced user interfaces with complex state management, ensuring smooth 60fps performance even during heavy hardware communication.</li>
+                <li>Led the end-to-end development of specialized mobile applications for international clients, bridging the gap between custom hardware firmware and modern Android user experiences.</li>
             </ul>
         </div>
 
-        <div class="experience-item">
+        <div class="experience-card">
             <div class="exp-header">
                 <div>
                     <span class="role">Android Engineer</span> | <span class="company">TestRight Nanosystems</span>
@@ -284,6 +384,55 @@
                 <li>Built an end-to-end biotech data capture system. Created the Android client interface and wrote ESP32 firmware (C++) for low-latency data transmission.</li>
                 <li>Used real-time graphing libraries to visualize spectrometer data with high refresh rates.</li>
             </ul>
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <h2>Technical Proficiency</h2>
+        <p style="margin-bottom: 24px;">A curated collection of my technical skills and proficiencies.</p>
+        
+        <div class="skills-grid-wrapper">
+            
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <ul class="grid-list">
+                    <li class="skill-card">Kotlin (Expert)</li>
+                    <li class="skill-card">Java</li>
+                    <li class="skill-card">C++ (Embedded)</li>
+                    <li class="skill-card">Python</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Android & Mobile</h3>
+                <ul class="grid-list">
+                    <li class="skill-card">Jetpack Compose & CMP</li>
+                    <li class="skill-card">Kotlin Multiplatform (KMM)</li>
+                    <li class="skill-card">Coroutines & Flow</li>
+                    <li class="skill-card">Dagger Hilt / Koin</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Architecture & Systems</h3>
+                <ul class="grid-list">
+                    <li class="skill-card">Clean Architecture</li>
+                    <li class="skill-card">BLE / Bluetooth Classic</li>
+                    <li class="skill-card">Protocol Buffers</li>
+                    <li class="skill-card">CI/CD Pipelines</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>AI & Machine Learning</h3>
+                <ul class="grid-list">
+                    <li class="skill-card">TensorFlow Lite</li>
+                    <li class="skill-card">Google MediaPipe</li>
+                    <li class="skill-card">Koog & Gemini API</li>
+                    <li class="skill-card">On-Device RAG</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
@@ -332,49 +481,7 @@
             </div>
         </div>
     </section>
-
-    <section>
-        <h2>Technical Proficiency</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Languages</h3>
-                <ul>
-                    <li>Kotlin (Expert)</li>
-                    <li>Java</li>
-                    <li>C++ (Embedded)</li>
-                    <li>Python</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>Android & Mobile</h3>
-                <ul>
-                    <li>Jetpack Compose & CMP</li>
-                    <li>Kotlin Multiplatform (KMM)</li>
-                    <li>Coroutines & Flow</li>
-                    <li>Dagger Hilt / Koin</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>Architecture & Systems</h3>
-                <ul>
-                    <li>Clean Architecture / Modularity</li>
-                    <li>BLE / Bluetooth Classic</li>
-                    <li>Protocol Buffers</li>
-                    <li>CI/CD</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>AI & Machine Learning</h3>
-                <ul>
-                    <li>TensorFlow Lite</li>
-                    <li>Google MediaPipe</li>
-                    <li>Koog & Gemini API</li>
-                    <li>On-Device RAG</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
+    
     <footer>
         <p>&copy; 2026 Yazan Aesmael.</p>
     </footer>
