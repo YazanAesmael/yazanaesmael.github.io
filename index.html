@@ -3,488 +3,1128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yazan Aesmael | Software Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Yazan Aesmael — Software Engineer</title>
+    <meta name="description" content="Native Android, iOS & Kotlin Multiplatform engineer. Hardware integration, real-time systems, and security-aware architecture.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Dark Theme Variables matching the screenshot style */
-            --bg-color: #0B1120;
-            --card-bg: #1E293B;
-            --card-hover: #2D3D53;
-            --text-primary: #F8FAFC;
-            --text-secondary: #94A3B8;
-            --accent-color: #60A5FA; /* Light Blue */
-            --border-color: #334155;
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            /* Surfaces */
+            --bg: #0A0A0F;
+            --bg-elevated: #11111A;
+            --surface: #15151F;
+            --surface-hover: #1C1C28;
+            --border: #232330;
+            --border-strong: #2E2E3D;
+
+            /* Text */
+            --text: #EDEDF0;
+            --text-muted: #9494A1;
+            --text-dim: #5C5C6A;
+
+            /* Kotlin brand gradient stops */
+            --kotlin-purple: #7F52FF;
+            --kotlin-magenta: #E840BA;
+            --kotlin-orange: #FF8A00;
+            --kotlin-gradient: linear-gradient(135deg, #7F52FF 0%, #E840BA 55%, #FF8A00 100%);
+
+            /* Syntax-inspired accents (used sparingly) */
+            --syntax-keyword: #C586C0;   /* purple-pink: fun, val, class */
+            --syntax-function: #DCDCAA;  /* yellow: function names */
+            --syntax-string: #7EC699;    /* green: strings, "available" */
+            --syntax-comment: #5C5C6A;   /* dim grey: comments */
+            --syntax-type: #4EC9B0;      /* teal: types */
+            --syntax-number: #B5CEA8;    /* light green: numbers */
+
+            /* Status */
+            --android-green: #3DDC84;
+
+            /* Type */
+            --font-body: 'Geist', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
         }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-primary);
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: "ss01", "cv11";
+
+            background-image:
+                radial-gradient(circle at 15% 0%, rgba(127, 82, 255, 0.10), transparent 45%),
+                radial-gradient(circle at 85% 12%, rgba(232, 64, 186, 0.07), transparent 40%),
+                radial-gradient(circle at 50% 100%, rgba(255, 138, 0, 0.05), transparent 50%);
+            background-attachment: fixed;
         }
 
-        .container {
-            max-width: 960px;
+        /* Subtle grid overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+            background-size: 56px 56px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ─── TOP NAV ─────────────────────────────────────── */
+        .topnav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            background: rgba(10, 10, 15, 0.72);
+            border-bottom: 1px solid var(--border);
+        }
+        .topnav-inner {
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* LINKS */
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        a:hover {
-            color: #93C5FD;
-            text-decoration: underline;
-        }
-
-        /* HEADER */
-        header {
-            margin-bottom: 60px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 40px;
-            text-align: left;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin: 0 0 10px 0;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            margin-bottom: 24px;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .contact-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 6px 12px;
-            background: rgba(96, 165, 250, 0.1);
-            border-radius: 6px;
-        }
-
-        .contact-links a:hover {
-            background: rgba(96, 165, 250, 0.2);
-            text-decoration: none;
-        }
-
-        /* SECTIONS GENERAL */
-        section {
-            margin-bottom: 70px;
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 16px;
-        }
-
-        p {
-            color: var(--text-secondary);
-            max-width: 800px;
-            font-size: 1.05rem;
-        }
-
-        /* EXPERIENCE SECTION - NEW CARD STYLE */
-        .experience-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 24px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-        
-        .experience-card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
-        }
-
-        .role {
-            font-weight: 700;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-        }
-
-        .company {
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .date {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            background: rgba(255,255,255,0.05);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-
-        .exp-details {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .exp-details li {
-            color: #CBD5E1; /* Slightly lighter than secondary for readability */
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-        
-        .exp-details li strong {
-            color: var(--text-primary);
-        }
-
-        /* SKILLS GRID - FROM SCREENSHOT STYLE */
-        .skills-grid-wrapper {
-            /* Wrapper for the categories */
-        }
-
-        .skill-category {
-            margin-bottom: 2.5rem;
-        }
-
-        .skill-category h3 {
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-            display: inline-block;
-            border-bottom: 2px solid rgba(96, 165, 250, 0.3);
-            padding-bottom: 4px;
-        }
-
-        .grid-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        .skill-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 16px 20px;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.95rem;
+            padding: 14px 24px;
             display: flex;
             align-items: center;
-            transition: all 0.2s ease;
+            justify-content: space-between;
+            gap: 16px;
         }
-
-        .skill-card:hover {
-            background-color: var(--card-hover);
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* PROJECTS CARD GRID */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 24px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%; 
-            box-sizing: border-box; 
-        }
-
-        .project-card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            border-color: var(--accent-color);
-            transform: translateY(-4px);
-            background-color: var(--card-hover);
-        }
-
-        .project-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 0 0 8px 0;
-        }
-
-        .project-tech {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .project-desc {
-            font-size: 0.95rem;
-            color: #CBD5E1;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .project-link {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: auto;
-            align-self: flex-start;
-            padding: 8px 0;
+        .brand {
+            font-family: var(--font-mono);
+            font-size: 0.92rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text);
             display: inline-flex;
             align-items: center;
+            gap: 10px;
         }
-        
-        .project-link::after {
-            content: " →";
-            transition: transform 0.2s;
+        .brand .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--kotlin-gradient);
+            box-shadow: 0 0 18px rgba(232, 64, 186, 0.6);
         }
-        
-        .project-link:hover::after {
-            transform: translateX(4px);
+        .brand-ext { color: var(--text-dim); }
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .nav-links a {
+            transition: color .15s ease;
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a::before {
+            content: "// ";
+            color: var(--syntax-comment);
+        }
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
         }
 
-        /* FOOTER */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding-top: 40px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 80px;
+        /* ─── PAGE CONTAINER ──────────────────────────────── */
+        .page {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .exp-header {
-                flex-direction: column;
-                gap: 5px;
-            }
-            .grid-list {
-                grid-template-columns: 1fr 1fr;
-            }
-            h1 { font-size: 2.2rem; }
+        /* ─── HERO ────────────────────────────────────────── */
+        .hero {
+            padding: 96px 0 80px;
+            border-bottom: 1px solid var(--border);
         }
-        
-        @media (max-width: 480px) {
-            .grid-list {
-                grid-template-columns: 1fr;
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 28px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero-tag::before {
+            content: "";
+            width: 24px;
+            height: 1px;
+            background: var(--text-dim);
+        }
+        h1.name {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: clamp(2.6rem, 7vw, 4.8rem);
+            line-height: 1.02;
+            letter-spacing: -0.035em;
+            margin: 0 0 24px;
+            color: var(--text);
+        }
+        .name-grad {
+            background: var(--kotlin-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-role {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            letter-spacing: 0.01em;
+        }
+        .hero-role .punct { color: var(--syntax-comment); }
+        .hero-role .platform { color: var(--syntax-type); }
+        .hero-summary {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 28px 0 36px;
+            line-height: 1.6;
+        }
+        .hero-summary strong { color: var(--text); font-weight: 500; }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 7px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(61, 220, 132, 0.04);
+            margin-bottom: 36px;
+        }
+        .status-dot {
+            position: relative;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--android-green);
+        }
+        .status-dot::after {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--android-green);
+            opacity: 0.35;
+            animation: pulse 2.4s ease-out infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.6); opacity: 0.5; }
+            70% { transform: scale(1.6); opacity: 0; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .contact {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .contact a {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            padding: 9px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            transition: all .18s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact a:hover {
+            color: var(--text);
+            border-color: var(--border-strong);
+            background: var(--surface);
+            transform: translateY(-1px);
+        }
+        .contact a .arrow {
+            color: var(--text-dim);
+            transition: transform .18s ease, color .18s ease;
+        }
+        .contact a:hover .arrow {
+            color: var(--kotlin-magenta);
+            transform: translate(2px, -2px);
+        }
+
+        /* ─── SECTIONS ────────────────────────────────────── */
+        section.block {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        section.block:last-of-type { border-bottom: none; }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 44px;
+            flex-wrap: wrap;
+        }
+        .section-num {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            letter-spacing: 0.05em;
+        }
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+            font-weight: 500;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+        .section-title .kw   { color: var(--syntax-keyword); }
+        .section-title .fn   { color: var(--syntax-function); }
+        .section-title .punct{ color: var(--text-dim); }
+        .section-title .ret  { color: var(--syntax-type); font-style: italic; }
+
+        /* ─── ABOUT ───────────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 760px;
+        }
+        .about-grid p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .about-grid p strong { color: var(--text); font-weight: 500; }
+        .about-grid .comment {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--syntax-comment);
+        }
+
+        /* ─── SKILLS ──────────────────────────────────────── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+        .skill-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 22px;
+            transition: border-color .2s ease, background .2s ease, transform .2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-block::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--kotlin-gradient);
+            opacity: 0;
+            transition: opacity .25s ease;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+        .skill-block:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
+        }
+        .skill-block:hover::before { opacity: 0.06; }
+
+        .skill-cat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .skill-cat-num {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+        .skill-cat-name {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .skill-cat-name::after {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--kotlin-gradient);
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .skill-list li {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            padding: 5px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.015);
+            transition: all .15s ease;
+        }
+        .skill-list li:hover {
+            color: var(--text);
+            border-color: var(--kotlin-purple);
+            background: rgba(127, 82, 255, 0.08);
+        }
+        .skill-list li.expert {
+            color: var(--text);
+            border-color: rgba(127, 82, 255, 0.4);
+            background: rgba(127, 82, 255, 0.06);
+        }
+
+        /* ─── EXPERIENCE ──────────────────────────────────── */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .exp-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 28px 24px;
+            transition: border-color .2s ease, background .2s ease;
+            position: relative;
+        }
+        .exp-card:hover {
+            border-color: var(--border-strong);
+            background: var(--surface-hover);
+        }
+        /* Left rail accent */
+        .exp-card::before {
+            content: "";
+            position: absolute;
+            left: -1px;
+            top: 24px;
+            bottom: 24px;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: var(--kotlin-gradient);
+            opacity: 0;
+            transition: opacity .2s ease;
+        }
+        .exp-card:hover::before { opacity: 1; }
+
+        .exp-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding-bottom: 16px;
+            margin-bottom: 18px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .exp-role-line {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .exp-role {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+        .exp-company {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .exp-company .at { color: var(--text-dim); margin-right: 6px; }
+        .exp-date {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            padding: 5px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .exp-bullets li {
+            color: var(--text-muted);
+            font-size: 0.97rem;
+            line-height: 1.65;
+            padding-left: 22px;
+            position: relative;
+        }
+        .exp-bullets li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--kotlin-magenta);
+            font-size: 0.85rem;
+        }
+        .exp-bullets li strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+        .exp-bullets li .num {
+            font-family: var(--font-mono);
+            color: var(--syntax-number);
+            font-weight: 500;
+        }
+
+        /* ─── PROJECTS ────────────────────────────────────── */
+        .proj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .proj-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            transition: all .2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .proj-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--kotlin-gradient);
+            opacity: 0;
+            transition: opacity .25s ease;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+        .proj-card:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px -20px rgba(127, 82, 255, 0.35);
+        }
+        .proj-card:hover::after { opacity: 0.05; }
+
+        .proj-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+            letter-spacing: 0.05em;
+        }
+        .proj-tag {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+        .proj-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 8px;
+            letter-spacing: -0.01em;
+        }
+        .proj-tech {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--kotlin-magenta);
+            margin-bottom: 14px;
+            letter-spacing: 0.02em;
+        }
+        .proj-desc {
+            color: var(--text-muted);
+            font-size: 0.93rem;
+            line-height: 1.6;
+            margin: 0 0 22px;
+            flex-grow: 1;
+        }
+        .proj-link {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            transition: color .15s ease;
+        }
+        .proj-link:hover { color: var(--kotlin-magenta); }
+        .proj-link .arrow { transition: transform .18s ease; display: inline-block; }
+        .proj-link:hover .arrow { transform: translateX(4px); }
+
+        /* ─── EDUCATION ───────────────────────────────────── */
+        .edu-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 26px 28px;
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            transition: border-color .2s ease, background .2s ease;
+            position: relative;
+        }
+        .edu-card::before {
+            content: "";
+            position: absolute;
+            left: -1px;
+            top: 22px;
+            bottom: 22px;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: var(--kotlin-gradient);
+            opacity: 0;
+            transition: opacity .2s ease;
+        }
+        .edu-card:hover { border-color: var(--border-strong); background: var(--surface-hover); }
+        .edu-card:hover::before { opacity: 1; }
+
+        .edu-degree {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+        .edu-spec {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--kotlin-magenta);
+            font-weight: 500;
+            margin-left: 6px;
+        }
+        .edu-meta {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .edu-sep { color: var(--text-dim); }
+        .edu-year { color: var(--text-dim); }
+
+        /* ─── FOOTER ──────────────────────────────────────── */
+        footer.foot {
+            padding: 60px 0 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+        .foot-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .foot-inner a:hover { color: var(--text); }
+
+        /* ─── RESPONSIVE ──────────────────────────────────── */
+        @media (max-width: 640px) {
+            .hero { padding: 64px 0 56px; }
+            section.block { padding: 60px 0; }
+            .exp-card { padding: 22px 20px; }
+            .exp-head { flex-direction: column; gap: 8px; }
+        }
+
+        /* ─── SUBTLE LOAD ANIMATION ───────────────────────── */
+        @media (prefers-reduced-motion: no-preference) {
+            .hero > * { animation: rise .7s cubic-bezier(.16,1,.3,1) backwards; }
+            .hero-tag { animation-delay: .05s; }
+            h1.name { animation-delay: .12s; }
+            .hero-role { animation-delay: .2s; }
+            .hero-summary { animation-delay: .28s; }
+            .status { animation-delay: .36s; }
+            .contact { animation-delay: .44s; }
+            @keyframes rise {
+                from { opacity: 0; transform: translateY(14px); }
+                to   { opacity: 1; transform: translateY(0); }
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Yazan Aesmael</h1>
-        <div class="subtitle">Lead Software Engineer | Android, KMM & Hardware Integration</div>
-        <div class="contact-links">
-            <a href="https://github.com/YazanAesmael" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/yazan-aesmael/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="mailto:yazanaesmael@gmail.com">yazanaesmael@gmail.com</a>
+<nav class="topnav">
+    <div class="topnav-inner">
+        <a href="#" class="brand">
+            <span class="dot"></span>
+            <span>yazan<span class="brand-ext">.kt</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="#about">about</a>
+            <a href="#skills">skills</a>
+            <a href="#experience">experience</a>
+            <a href="#showcase">showcase</a>
+            <a href="#education">education</a>
+        </div>
+    </div>
+</nav>
+
+<div class="page">
+
+    <!-- ─── HERO ─────────────────────────────────────── -->
+    <header class="hero">
+        <div class="hero-tag">software engineer</div>
+
+        <h1 class="name">
+            Yazan <span class="name-grad">Aesmael</span>
+        </h1>
+
+        <div class="hero-role">
+            <span class="platform">Native&nbsp;Android</span>
+            <span class="punct"> · </span>
+            <span class="platform">iOS</span>
+            <span class="punct"> · </span>
+            <span class="platform">Kotlin&nbsp;Multiplatform</span>
+            <span class="punct"> · </span>
+            <span class="platform">Hardware&nbsp;Integration</span>
+        </div>
+
+        <p class="hero-summary">
+            I understand the Android Framework under the hood — and that lets me optimize performance, secure data, and keep hardware and software in perfect sync. I specialize in <strong>real-time systems</strong>, <strong>native KMP/CMP</strong>, and <strong>hardware integration</strong>, scaling production apps to <strong>100,000+ active users</strong> across multi-module codebases.
+        </p>
+
+        <div class="contact">
+            <a href="https://github.com/YazanAesmael" target="_blank" rel="noopener noreferrer">
+                GitHub <span class="arrow">↗</span>
+            </a>
+            <a href="https://www.linkedin.com/in/yazan-aesmael/" target="_blank" rel="noopener noreferrer">
+                LinkedIn <span class="arrow">↗</span>
+            </a>
+            <a href="mailto:yazanaesmael@gmail.com">
+                yazanaesmael@gmail.com <span class="arrow">→</span>
+            </a>
         </div>
     </header>
 
-    <section>
-        <h2>Professional Summary</h2>
-        <p>
-            I understand the Android Framework under the hood. This allows me to optimize performance, secure data, and ensure hardware and software work in perfect sync.
-        </p>
-        <p>
-           I specialize in Real-time Systems, Native KMP, and Hardware Integration (BLE/USB). I build scalable multi-module projects and handle everything from security auditing to CI/CD automation. I focus on eliminating UI jank and battery drain using tools like Android Profiler.
-        </p>
+    <!-- ─── ABOUT ────────────────────────────────────── -->
+    <section id="about" class="block">
+        <div class="section-head">
+            <span class="section-num">// 01</span>
+            <h2 class="section-title">
+                <span class="kw">fun</span> <span class="fn">about</span><span class="punct">()</span><span class="punct">:</span> <span class="ret">Engineer</span>
+            </h2>
+        </div>
+
+        <div class="about-grid">
+            <p class="comment">// Four-plus years building, leading, and shipping production mobile.</p>
+            <p>
+                I lead full lifecycles — architecting from zero, modularizing legacy codebases, extracting reactive design systems, and migrating apps onto modern foundations. <strong>Clean architecture, MVVM/MVI/UDF, and multi-module composition</strong> are defaults rather than goals.
+            </p>
+            <p>
+                On performance I run a tight loop: Android Profiler, automated UI tests, Leak Canary, baseline profiles, R8. I treat <strong>UI jank and battery drain</strong> as bugs and ship fixes against measurable budgets.
+            </p>
+            <p>
+                Beyond the app layer I write <strong>Kotlin backends with Ktor</strong>, share contracts across mobile, server, and DB via KMP, and design offline-first sync that holds up under any condition.
+            </p>
+            <p>
+                Security is a default, not a checklist. Early exposure to the Android system — rooted devices, custom ROMs, runtime instrumentation — gave me real depth in <strong>reverse engineering, vulnerability discovery, and patching</strong>. I run dynamic and static analysis on my own apps, and enforce a strict security-conscious coding style that closes off common abuse vectors before production.
+            </p>
+        </div>
     </section>
 
-    <section>
-        <h2>Experience</h2>
+    <!-- ─── SKILLS ───────────────────────────────────── -->
+    <section id="skills" class="block">
+        <div class="section-head">
+            <span class="section-num">// 02</span>
+            <h2 class="section-title">
+                <span class="kw">object</span> <span class="fn">Expertise</span>
+            </h2>
+        </div>
 
-        <div class="experience-card">
-            <div class="exp-header">
-                <div>
-                    <span class="role">Lead Android Engineer</span> | <span class="company">Lifease Solutions</span>
+        <div class="skills-grid">
+
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">01</span>
+                    <span class="skill-cat-name">Languages</span>
                 </div>
-                <span class="date">Nov 2023 - Present</span>
+                <ul class="skill-list">
+                    <li class="expert">Kotlin · Expert</li>
+                    <li>Swift</li>
+                    <li>Java</li>
+                    <li>C++ (Embedded)</li>
+                    <li>Python</li>
+                </ul>
             </div>
-            <ul class="exp-details">
-                <li>Solely designed and delivered the application from zero to 100,000+ active users. Engineered a concurrent Socket.IO layer managing 5+ active connections per screen with zero thermal throttling on low-end devices.</li>
-                <li>Defined the data synchronization strategy, implementing full-stack GZIP compression (REST & Sockets), custom key encoding, and ETag caching. These decisions reduced server payloads by 95% and minimized data usage and costs.</li>
-                <li>Enforced strict performance budgets using Android Profiler and Automated UI Tests. Leveraged R8 shrinking, Baseline Profiles, and coding best practices to eliminate 90% of UI jank and improve startup time by 50%, ensuring consistent rendering under heavy load on any device.</li>
-                <li>Trusted in recruitment for Android and Product Design roles, using my deep product lifecycle knowledge to assess cross-functional fit for candidates. Onboarded and mentored 2 junior developers to independence, teaching advanced Coroutines, Flows, and Jetpack best practices to ensure clean, maintainable code and strict adherence to the design system.</li>
-            </ul>
-        </div>
 
-        <div class="experience-card">
-            <div class="exp-header">
-                <div>
-                    <span class="role">Independent Senior Engineer</span> | <span class="company">Consultant</span>
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">02</span>
+                    <span class="skill-cat-name">Mobile &amp; Multiplatform</span>
                 </div>
-                <span class="date">Dec 2023 - Present</span>
+                <ul class="skill-list">
+                    <li>Jetpack Compose</li>
+                    <li>SwiftUI</li>
+                    <li>KMM / CMP</li>
+                    <li>Coroutines &amp; Flow</li>
+                    <li>Dagger Hilt</li>
+                    <li>Koin</li>
+                    <li>Material 3</li>
+                </ul>
             </div>
-            <ul class="exp-details">
-                <li>Architected and deployed advanced CI/CD pipelines for multiple clients. Trained development teams on automation best practices, reducing deployment friction and standardizing release workflows.</li>
-                <li>Engineered full solutions integrating <strong> BLE, and USB</strong> protocols. Solved complex hardware-software synchronization challenges to ensure 99.9% data reliability in offline environments.</li>
-                <li>Designed and implemented expressive, advanced user interfaces with complex state management, ensuring smooth 60fps performance even during heavy hardware communication.</li>
-                <li>Led the end-to-end development of specialized mobile applications for international clients, bridging the gap between custom hardware firmware and modern Android user experiences.</li>
-            </ul>
-        </div>
 
-        <div class="experience-card">
-            <div class="exp-header">
-                <div>
-                    <span class="role">Android Engineer</span> | <span class="company">TestRight Nanosystems</span>
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">03</span>
+                    <span class="skill-cat-name">Architecture &amp; Systems</span>
                 </div>
-                <span class="date">July 2023 - Aug 2023</span>
+                <ul class="skill-list">
+                    <li>Clean Architecture</li>
+                    <li>MVVM / MVI / UDF</li>
+                    <li>Multi-module Composition</li>
+                    <li>Reactive Design Systems</li>
+                    <li>Offline-first Sync</li>
+                    <li>Protocol Buffers</li>
+                </ul>
             </div>
-            <ul class="exp-details">
-                <li>Built an end-to-end biotech data capture system. Created the Android client interface and wrote ESP32 firmware (C++) for low-latency data transmission.</li>
-                <li>Used real-time graphing libraries to visualize spectrometer data with high refresh rates.</li>
-            </ul>
+
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">04</span>
+                    <span class="skill-cat-name">Hardware Integration</span>
+                </div>
+                <ul class="skill-list">
+                    <li>BLE</li>
+                    <li>Bluetooth Classic</li>
+                    <li>USB Communication</li>
+                    <li>CoreBluetooth</li>
+                    <li>ESP32 / Arduino Firmware</li>
+                    <li>Real-time Sockets</li>
+                </ul>
+            </div>
+
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">05</span>
+                    <span class="skill-cat-name">Backend &amp; Infrastructure</span>
+                </div>
+                <ul class="skill-list">
+                    <li>Ktor</li>
+                    <li>Supabase</li>
+                    <li>Firebase</li>
+                    <li>Cloud Functions</li>
+                    <li>REST / WebSockets</li>
+                    <li>SQL</li>
+                    <li>Cloudflare</li>
+                </ul>
+            </div>
+
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">06</span>
+                    <span class="skill-cat-name">DevOps &amp; Quality</span>
+                </div>
+                <ul class="skill-list">
+                    <li>GitHub Actions</li>
+                    <li>GitLab CI</li>
+                    <li>Bitbucket Pipelines</li>
+                    <li>Play Store / TestFlight</li>
+                    <li>Firebase App Distribution</li>
+                    <li>SonarQube</li>
+                    <li>Android Profiler</li>
+                    <li>Automated UI Tests</li>
+                    <li>Leak Canary</li>
+                </ul>
+            </div>
+
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">07</span>
+                    <span class="skill-cat-name">Security &amp; RE</span>
+                </div>
+                <ul class="skill-list">
+                    <li>Frida</li>
+                    <li>Ghidra</li>
+                    <li>JADX</li>
+                    <li>APKTool</li>
+                    <li>Dex2jar</li>
+                    <li>Intercepting Proxies</li>
+                    <li>ADB Shell</li>
+                    <li>Android CLI</li>
+                    <li>Static / Dynamic Analysis</li>
+                    <li>Vulnerability Patching</li>
+                </ul>
+            </div>
+
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">08</span>
+                    <span class="skill-cat-name">AI &amp; Acceleration</span>
+                </div>
+                <ul class="skill-list">
+                    <li>LLM-driven Workflows</li>
+                    <li>Claude CLI</li>
+                    <li>Agent Skills</li>
+                    <li>Kotlin Koog</li>
+                    <li>On-Device RAG</li>
+                    <li>MediaPipe</li>
+                </ul>
+            </div>
+
+            <div class="skill-block">
+                <div class="skill-cat">
+                    <span class="skill-cat-num">09</span>
+                    <span class="skill-cat-name">Interests</span>
+                </div>
+                <ul class="skill-list">
+                    <li>System Design</li>
+                    <li>Object-Oriented Programming</li>
+                    <li>Low-level Languages</li>
+                    <li>UI/UX Design</li>
+                    <li>GPU Acceleration</li>
+                    <li>Shaders</li>
+                    <li>Linux</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
-    <section class="skills-section">
-        <h2>Technical Proficiency</h2>
-        <p style="margin-bottom: 24px;">A curated collection of my technical skills and proficiencies.</p>
-        
-        <div class="skills-grid-wrapper">
-            
-            <div class="skill-category">
-                <h3>Languages</h3>
-                <ul class="grid-list">
-                    <li class="skill-card">Kotlin (Expert)</li>
-                    <li class="skill-card">Java</li>
-                    <li class="skill-card">C++ (Embedded)</li>
-                    <li class="skill-card">Python</li>
+    <!-- ─── EXPERIENCE ───────────────────────────────── -->
+    <section id="experience" class="block">
+        <div class="section-head">
+            <span class="section-num">// 03</span>
+            <h2 class="section-title">
+                <span class="kw">fun</span> <span class="fn">experience</span><span class="punct">()</span><span class="punct">:</span> <span class="ret">List&lt;Role&gt;</span>
+            </h2>
+        </div>
+
+        <div class="exp-list">
+
+            <div class="exp-card">
+                <div class="exp-head">
+                    <div class="exp-role-line">
+                        <div class="exp-role">Lead Android Engineer</div>
+                        <div class="exp-company"><span class="at">@</span>Lifease Solutions</div>
+                    </div>
+                    <span class="exp-date">Nov 2023 — Present</span>
+                </div>
+                <ul class="exp-bullets">
+                    <li>
+                        Solely designed and delivered a live cricket application from zero to <span class="num">100,000+</span> active users. Engineered a concurrent <strong>Socket.IO</strong> layer managing 5+ active connections per screen with zero thermal throttling on low-end devices.
+                    </li>
+                    <li>
+                        Defined the data synchronization strategy — full-stack <strong>GZIP compression</strong> across REST &amp; sockets, custom key encoding, and ETag caching. Reduced server payloads by <span class="num">95%</span> and cut user-side data costs.
+                    </li>
+                    <li>
+                        Enforced strict performance budgets via Android Profiler and automated UI tests. Leveraged <strong>R8 shrinking</strong>, <strong>Baseline Profiles</strong>, and disciplined Compose patterns to eliminate <span class="num">90%</span> of UI jank and improve startup time by <span class="num">50%</span>.
+                    </li>
+                    <li>
+                        Trusted in recruitment for Android and Product Design roles. Onboarded and mentored <span class="num">2</span> junior engineers to independence — advanced Coroutines, Flow, Jetpack patterns, and strict design-system adherence.
+                    </li>
                 </ul>
             </div>
 
-            <div class="skill-category">
-                <h3>Android & Mobile</h3>
-                <ul class="grid-list">
-                    <li class="skill-card">Jetpack Compose & CMP</li>
-                    <li class="skill-card">Kotlin Multiplatform (KMM)</li>
-                    <li class="skill-card">Coroutines & Flow</li>
-                    <li class="skill-card">Dagger Hilt / Koin</li>
+            <div class="exp-card">
+                <div class="exp-head">
+                    <div class="exp-role-line">
+                        <div class="exp-role">Independent Senior Engineer</div>
+                        <div class="exp-company"><span class="at">@</span>Freelance Consultant</div>
+                    </div>
+                    <span class="exp-date">Dec 2023 — Present</span>
+                </div>
+                <ul class="exp-bullets">
+                    <li>
+                        Led architecture and delivery of an <strong>enterprise Android item-management application</strong> for a Fortune-100 retail network deployed across thousands of stores. Migrated to Navigation 3 with type-safe routing, built complex receiving / store-to-store transfer workflows, and engineered ViewModel-scoped state surviving back-stack lifecycle changes.
+                    </li>
+                    <li>
+                        Ported a <strong>BLE-driven sports tracking app</strong> from Android-only to full Android + iOS production parity. Owned CoreBluetooth integration, custom SwiftUI gestures (swipe-to-reveal, drag), premium-content gating, and unified architecture across both platforms.
+                    </li>
+                    <li>
+                        Shipped <strong>indie KMP / Compose Multiplatform applications</strong> to the Apple App Store with kotlin-inject DI, RevenueCat IAP, multiplatform-settings persistence, and <span class="num">100%</span> shared business logic compiling natively to iOS.
+                    </li>
+                    <li>
+                        Held an <strong>offensive security retainer</strong> focused on Android attack-surface analysis, reverse engineering, and vulnerability assessment using Frida, Ghidra, and JADX-driven workflows.
+                    </li>
+                    <li>
+                        Architected and deployed <strong>multi-client CI/CD pipelines</strong> — automated build/release flows, changelog-driven team notifications hooked into Jira ticket creation, RELEASE_NOTES propagation to Play Store, and PR quality gates with SonarQube and automated tests.
+                    </li>
                 </ul>
             </div>
 
-            <div class="skill-category">
-                <h3>Architecture & Systems</h3>
-                <ul class="grid-list">
-                    <li class="skill-card">Clean Architecture</li>
-                    <li class="skill-card">BLE / Bluetooth Classic</li>
-                    <li class="skill-card">Protocol Buffers</li>
-                    <li class="skill-card">CI/CD Pipelines</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3>AI & Machine Learning</h3>
-                <ul class="grid-list">
-                    <li class="skill-card">TensorFlow Lite</li>
-                    <li class="skill-card">Google MediaPipe</li>
-                    <li class="skill-card">Koog & Gemini API</li>
-                    <li class="skill-card">On-Device RAG</li>
+            <div class="exp-card">
+                <div class="exp-head">
+                    <div class="exp-role-line">
+                        <div class="exp-role">Android Engineer</div>
+                        <div class="exp-company"><span class="at">@</span>TestRight Nanosystems</div>
+                    </div>
+                    <span class="exp-date">Jul 2023 — Aug 2023</span>
+                </div>
+                <ul class="exp-bullets">
+                    <li>
+                        Built an end-to-end biotech data capture system. Authored the Android client and the <strong>ESP32 firmware in C++</strong> for low-latency telemetry transmission.
+                    </li>
+                    <li>
+                        Integrated real-time graphing for <strong>spectrometer data</strong> at high refresh rates without dropping frames during active capture sessions.
+                    </li>
                 </ul>
             </div>
 
         </div>
     </section>
 
-    <section>
-        <h2>Engineering Showcase</h2>
-        <div class="project-grid">
+    <!-- ─── SHOWCASE ─────────────────────────────────── -->
+    <section id="showcase" class="block">
+        <div class="section-head">
+            <span class="section-num">// 04</span>
+            <h2 class="section-title">
+                <span class="kw">val</span> <span class="fn">showcase</span><span class="punct">:</span> <span class="ret">List&lt;Project&gt;</span>
+            </h2>
+        </div>
 
-            <div class="project-card">
-                <h3 class="project-title">JetOverlay SDK</h3>
-                <div class="project-tech">Android SDK • Jetpack Compose • WindowManager</div>
-                <p class="project-desc">
-                    A lightweight, Compose-first Android SDK for managing floating system overlays. 
-                    I separated the window management from the UI content, added physics-based dragging, and ensured process resilience via foreground services.
-                </p>
-                <a href="https://github.com/YazanAesmael/JetOverlay" class="project-link" target="_blank" rel="noopener noreferrer">View SDK Repository</a>
-            </div>
-            
-            <div class="project-card">
-                <h3 class="project-title">RealHandsFree</h3>
-                <div class="project-tech">Android • MediaPipe • Accessibility Service</div>
-                <p class="project-desc">
-                    An accessibility tool for touch-free Android navigation. 
-                    Using computer vision to map hand movements to clicks and scrolls with high precision.
-                </p>
-                <a href="https://github.com/YazanAesmael/RealHandsFree" class="project-link" target="_blank" rel="noopener noreferrer">View Source Code</a>
-            </div>
+        <div class="proj-grid">
 
-            <div class="project-card">
-                <h3 class="project-title">EchoVerse</h3>
-                <div class="project-tech">Kotlin Multiplatform • Koog Agents • RAG</div>
-                <p class="project-desc">
-                    A modular KMP app that creates "digital twins" from chat history. 
-                    I built a local RAG pipeline using SQLDelight and Google Gemini for context-aware, low-latency persona simulation.
+            <a href="https://github.com/YazanAesmael/JetOverlay" target="_blank" rel="noopener noreferrer" class="proj-card">
+                <div class="proj-meta">
+                    <span class="proj-tag">SDK</span>
+                    <span>★ 17 · ⑂ 2</span>
+                </div>
+                <h3 class="proj-title">JetOverlay</h3>
+                <div class="proj-tech">Compose · WindowManager · Foreground Service</div>
+                <p class="proj-desc">
+                    A lightweight, Compose-first Android SDK for managing floating system overlays. Separates window management from UI content, adds physics-based dragging, and ensures process resilience via foreground services.
                 </p>
-                <a href="https://github.com/YazanAesmael/EchoVerse" class="project-link" target="_blank" rel="noopener noreferrer">View Research Repository</a>
-            </div>
+                <span class="proj-link">View repository <span class="arrow">→</span></span>
+            </a>
 
-            <div class="project-card">
-                <h3 class="project-title">OpenSurvey</h3>
-                <div class="project-tech">Clean Architecture • BLE • HAL</div>
-                <p class="project-desc">
-                    A white-label surveying platform with a Hardware Abstraction Layer.
-                    I built a dual-mode communication engine that switches between BLE and USB to ensure data integrity for field hardware.
+            <a href="https://github.com/YazanAesmael/RealHandsFree" target="_blank" rel="noopener noreferrer" class="proj-card">
+                <div class="proj-meta">
+                    <span class="proj-tag">A11Y</span>
+                    <span>computer vision</span>
+                </div>
+                <h3 class="proj-title">RealHandsFree</h3>
+                <div class="proj-tech">MediaPipe · CameraX · AccessibilityService</div>
+                <p class="proj-desc">
+                    Touch-free Android navigation. Maps live hand movements to clicks and scrolls with high precision via MediaPipe and a custom accessibility service.
                 </p>
-                <a href="https://github.com/YazanAesmael/OpenSurvey" class="project-link" target="_blank" rel="noopener noreferrer">View Enterprise Framework</a>
+                <span class="proj-link">View source <span class="arrow">→</span></span>
+            </a>
+
+            <a href="https://github.com/YazanAesmael/EchoVerse" target="_blank" rel="noopener noreferrer" class="proj-card">
+                <div class="proj-meta">
+                    <span class="proj-tag">KMP</span>
+                    <span>research</span>
+                </div>
+                <h3 class="proj-title">EchoVerse</h3>
+                <div class="proj-tech">KMP · Koog Agents · RAG · SQLDelight</div>
+                <p class="proj-desc">
+                    A modular KMP app generating "digital twins" from chat history. Local RAG pipeline backed by SQLDelight and Gemini drives context-aware, low-latency persona simulation.
+                </p>
+                <span class="proj-link">View research repo <span class="arrow">→</span></span>
+            </a>
+
+            <a href="https://github.com/YazanAesmael/OpenSurvey" target="_blank" rel="noopener noreferrer" class="proj-card">
+                <div class="proj-meta">
+                    <span class="proj-tag">ENTERPRISE</span>
+                    <span>HAL · BLE · USB</span>
+                </div>
+                <h3 class="proj-title">OpenSurvey</h3>
+                <div class="proj-tech">Clean Architecture · BLE · USB · HAL</div>
+                <p class="proj-desc">
+                    A white-label field surveying platform with a Hardware Abstraction Layer. Dual-mode communication engine that switches between BLE and USB to guarantee data integrity across field hardware.
+                </p>
+                <span class="proj-link">View framework <span class="arrow">→</span></span>
+            </a>
+
+            <a href="https://github.com/YazanAesmael/kmp-skeleton" target="_blank" rel="noopener noreferrer" class="proj-card">
+                <div class="proj-meta">
+                    <span class="proj-tag">TEMPLATE</span>
+                    <span>public</span>
+                </div>
+                <h3 class="proj-title">kmp-skeleton</h3>
+                <div class="proj-tech">Kotlin Multiplatform · Convention Plugins · Modular</div>
+                <p class="proj-desc">
+                    An up-to-date Kotlin Multiplatform skeleton with modular architecture and Gradle convention plugins for centralized dependency and build management. Intended as a clean starting point for new KMP/CMP projects.
+                </p>
+                <span class="proj-link">View template <span class="arrow">→</span></span>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ─── EDUCATION ────────────────────────────────── -->
+    <section id="education" class="block">
+        <div class="section-head">
+            <span class="section-num">// 05</span>
+            <h2 class="section-title">
+                <span class="kw">val</span> <span class="fn">education</span><span class="punct">:</span> <span class="ret">Degree</span>
+            </h2>
+        </div>
+
+        <div class="edu-card">
+            <div class="edu-degree">B.Tech, Computer Science &amp; Engineering <span class="edu-spec">(IT)</span></div>
+            <div class="edu-meta">
+                <span class="edu-school">Kalinga Institute of Industrial Technology</span>
+                <span class="edu-sep">·</span>
+                <span class="edu-year">Class of 2023</span>
             </div>
         </div>
     </section>
-    
-    <footer>
-        <p>&copy; 2026 Yazan Aesmael.</p>
+
+    <footer class="foot">
+        <div class="foot-inner">
+            <div>// © 2026 Yazan Aesmael · inspired by kotlin</div>
+            <div>
+                <a href="mailto:yazanaesmael@gmail.com">yazanaesmael@gmail.com</a>
+            </div>
+        </div>
     </footer>
+
 </div>
 
 </body>
