@@ -1,0 +1,37 @@
+---
+import { site } from '../data/site';
+const { links, availability } = site;
+---
+
+<div class="contact">
+  <p class="contact__lead">
+    {
+      availability.open
+        ? "I'm open to Lead and Senior Android / Kotlin Multiplatform roles. The fastest way to reach me is email."
+        : 'The fastest way to reach me is email.'
+    }
+  </p>
+  <div class="contact__actions">
+    <a class="btn btn--primary" href={`mailto:${links.email}`}>{links.email}</a>
+    <a class="btn" href={links.github} target="_blank" rel="me noopener">GitHub ↗</a>
+    <a class="btn" href={links.linkedin} target="_blank" rel="me noopener">LinkedIn ↗</a>
+  </div>
+</div>
+
+<style>
+  .contact {
+    display: grid;
+    gap: var(--sp-5);
+    max-width: 60ch;
+  }
+  .contact__lead {
+    font-size: var(--fs-lg);
+    color: var(--text);
+    line-height: var(--lh-snug);
+  }
+  .contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+</style>

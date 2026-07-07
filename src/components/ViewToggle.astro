@@ -1,0 +1,102 @@
+---
+// Concise <-> Deep-dive segmented control.
+// Initial state is set before paint by the inline script in Base.astro;
+// this component just reflects it and wires the clicks.
+---
+
+<div class="viewtoggle" role="group" aria-label="Detail level">
+  <span class="viewtoggle__label mono" aria-hidden="true">view</span>
+  <div class="viewtoggle__track">
+    <button type="button" data-view-btn="concise" class="viewtoggle__btn" aria-pressed="true">
+      Concise
+    </button>
+    <button type="button" data-view-btn="deep" class="viewtoggle__btn" aria-pressed="false">
+      Deep dive
+    </button>
+    <span class="viewtoggle__thumb" aria-hidden="true"></span>
+  </div>
+</div>
+
+<style>
+  .viewtoggle {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .viewtoggle__label {
+    font-size: var(--fs-xs);
+    color: var(--text-mute);
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 400px) {
+    .viewtoggle__label {
+      display: none;
+    }
+  }
+  .viewtoggle__track {
+    position: relative;
+    display: inline-flex;
+    padding: 3px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-full);
+  }
+  .viewtoggle__btn {
+    position: relative;
+    z-index: 1;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-dim);
+    font: inherit;
+    font-size: var(--fs-sm);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--r-full);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+  .viewtoggle__btn[aria-pressed='true'] {
+    color: var(--accent-contrast);
+  }
+  .viewtoggle__thumb {
+    position: absolute;
+    z-index: 0;
+    top: 3px;
+    bottom: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    background: var(--accent);
+    border-radius: var(--r-full);
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  :global([data-view='deep']) .viewtoggle__thumb {
+    transform: translateX(100%);
+  }
+</style>
+
+<script>
+  function apply(view: string) {
+    document.documentElement.setAttribute('data-view', view);
+    try {
+      localStorage.setItem('view', view);
+    } catch (e) {}
+    // Keep the URL shareable: yazan.work/?view=deep
+    try {
+      const url = new URL(window.location.href);
+      if (view === 'deep') url.searchParams.set('view', 'deep');
+      else url.searchParams.delete('view');
+      history.replaceState(null, '', url);
+    } catch (e) {}
+    document.querySelectorAll<HTMLButtonElement>('[data-view-btn]').forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(btn.dataset.viewBtn === view));
+    });
+  }
+
+  // Reflect the pre-paint state, then wire clicks.
+  const current = document.documentElement.getAttribute('data-view') || 'concise';
+  apply(current);
+  document.querySelectorAll<HTMLButtonElement>('[data-view-btn]').forEach((btn) => {
+    btn.addEventListener('click', () => apply(btn.dataset.viewBtn || 'concise'));
+  });
+</script>

@@ -1,0 +1,105 @@
+---
+import { experience, education } from '../data/experience';
+---
+
+<div class="exp">
+  {
+    experience.map((role) => (
+      <article class="exp__item">
+        <div class="exp__meta mono">
+          <span class="exp__dates">{role.dates}</span>
+          <span class="exp__type">{role.type}</span>
+        </div>
+        <div class="exp__body">
+          <h3 class="exp__role">
+            {role.role} <span class="exp__at">·</span>{' '}
+            <span class="exp__company">{role.company}</span>
+          </h3>
+          <p class="exp__summary">{role.summary}</p>
+          <ul class="exp__details deep-only">
+            {role.details.map((d) => (
+              <li>{d}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))
+  }
+
+  <article class="exp__item">
+    <div class="exp__meta mono">
+      <span class="exp__dates">{education.year}</span>
+      <span class="exp__type">Education</span>
+    </div>
+    <div class="exp__body">
+      <h3 class="exp__role">{education.degree}</h3>
+      <p class="exp__summary">{education.school} · {education.location}</p>
+    </div>
+  </article>
+</div>
+
+<style>
+  .exp {
+    display: grid;
+    gap: var(--sp-2);
+  }
+  .exp__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-2);
+    padding: var(--sp-5) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp__item:last-child {
+    border-bottom: 0;
+  }
+  @media (min-width: 720px) {
+    .exp__item {
+      grid-template-columns: 200px 1fr;
+      gap: var(--sp-5);
+    }
+  }
+  .exp__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: var(--fs-xs);
+    padding-top: 0.3rem;
+  }
+  .exp__dates {
+    color: var(--text-dim);
+  }
+  .exp__type {
+    color: var(--text-mute);
+  }
+  .exp__role {
+    font-size: var(--fs-md);
+    font-weight: 600;
+  }
+  .exp__at {
+    color: var(--text-mute);
+  }
+  .exp__company {
+    color: var(--accent-2);
+  }
+  .exp__summary {
+    margin-top: var(--sp-2);
+    color: var(--text-dim);
+    max-width: 66ch;
+  }
+  .exp__details {
+    margin: var(--sp-4) 0 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: var(--sp-2);
+    color: var(--text-dim);
+    font-size: var(--fs-sm);
+    max-width: 68ch;
+  }
+  .exp__details li {
+    padding-left: 0.2rem;
+  }
+  .exp__details li::marker {
+    color: var(--accent);
+  }
+</style>

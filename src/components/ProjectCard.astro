@@ -1,0 +1,267 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  id: string;
+  data: CollectionEntry<'projects'>['data'];
+}
+const { id, data } = Astro.props;
+
+const statusLabel: Record<string, string> = {
+  live: 'Live',
+  development: 'In development',
+  'open-source': 'Open source',
+  private: 'Private',
+};
+---
+
+<article class="card" id={id} data-status={data.statusKind}>
+  <div class="card__head">
+    <span class="status">
+      <span class="status__dot" aria-hidden="true"></span>
+      {statusLabel[data.statusKind] ?? data.status}
+    </span>
+    <span class="card__year mono">{data.year}</span>
+  </div>
+
+  <h3 class="card__name">{data.name}</h3>
+  <p class="card__tagline">{data.tagline}</p>
+  <p class="card__summary">{data.summary}</p>
+
+  <p class="card__role mono">{data.role}</p>
+
+  {
+    data.stack.length > 0 && (
+      <ul class="chips" aria-label="Tech stack">
+        {data.stack.map((t) => (
+          <li class="chip">{t}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    data.metrics.length > 0 && (
+      <ul class="metrics" aria-label="Key facts">
+        {data.metrics.map((m) => (
+          <li class="metric mono">{m}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    data.links.length > 0 && (
+      <div class="card__links">
+        {data.links.map((l) => (
+          <a class="btn btn--sm" href={l.url} target="_blank" rel="noopener">
+            {l.label} <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    )
+  }
+
+  <!-- DEEP DIVE: in the DOM always (SEO), shown only in deep view -->
+  <div class="card__deep deep-only">
+    {
+      data.highlights.length > 0 && (
+        <ul class="highlights">
+          {data.highlights.map((h) => (
+            <li>{h}</li>
+          ))}
+        </ul>
+      )
+    }
+    <div class="prose">
+      <slot />
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    scroll-margin-top: 5rem;
+    padding: var(--sp-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    transition: border-color 0.2s ease;
+  }
+  .card:hover {
+    border-color: var(--border-strong);
+  }
+  .card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.02em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .status__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-private);
+  }
+  [data-status='live'] .status__dot {
+    background: var(--status-live);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--status-live) 22%, transparent);
+  }
+  [data-status='development'] .status__dot {
+    background: var(--status-dev);
+  }
+  [data-status='open-source'] .status__dot {
+    background: var(--status-oss);
+  }
+  .card__year {
+    font-size: var(--fs-xs);
+    color: var(--text-mute);
+  }
+  .card__name {
+    font-size: var(--fs-xl);
+    margin-bottom: var(--sp-2);
+  }
+  .card__tagline {
+    color: var(--text);
+    font-size: var(--fs-md);
+    line-height: var(--lh-snug);
+  }
+  .card__summary {
+    margin-top: var(--sp-3);
+    color: var(--text-dim);
+    max-width: 65ch;
+  }
+  .card__role {
+    margin-top: var(--sp-4);
+    font-size: var(--fs-xs);
+    color: var(--text-mute);
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    margin-top: var(--sp-4);
+    padding: 0;
+    list-style: none;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-dim);
+    padding: 0.25rem 0.55rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+  }
+
+  .metrics {
+    display: grid;
+    gap: var(--sp-2);
+    margin-top: var(--sp-5);
+    padding: 0;
+    list-style: none;
+  }
+  .metric {
+    position: relative;
+    padding-left: 1.3rem;
+    font-size: var(--fs-sm);
+    color: var(--text-dim);
+  }
+  .metric::before {
+    content: '›';
+    position: absolute;
+    left: 0.2rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: var(--sp-5);
+  }
+  :global(.btn--sm) {
+    padding: 0.4rem 0.75rem;
+    font-size: var(--fs-xs);
+  }
+
+  .card__deep {
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-5);
+    border-top: 1px dashed var(--border-strong);
+  }
+  .highlights {
+    display: grid;
+    gap: var(--sp-3);
+    margin: 0 0 var(--sp-5);
+    padding: 0;
+    list-style: none;
+  }
+  .highlights li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--text-dim);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+  }
+  .highlights li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    color: var(--accent);
+    font-size: 0.8em;
+  }
+
+  /* prose = the rendered markdown case-study body (slotted, so global) */
+  :global(.prose) {
+    color: var(--text-dim);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+  }
+  :global(.prose h2) {
+    color: var(--text);
+    font-size: var(--fs-md);
+    margin-top: var(--sp-6);
+    margin-bottom: var(--sp-3);
+    letter-spacing: -0.01em;
+  }
+  :global(.prose h2:first-child) {
+    margin-top: 0;
+  }
+  :global(.prose p) {
+    margin-bottom: var(--sp-4);
+    max-width: 68ch;
+  }
+  :global(.prose strong) {
+    color: var(--text);
+    font-weight: 600;
+  }
+  :global(.prose code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.05em 0.35em;
+  }
+  :global(.prose ul) {
+    margin: 0 0 var(--sp-4);
+    padding-left: 1.1rem;
+  }
+  :global(.prose li) {
+    margin-bottom: var(--sp-2);
+  }
+</style>

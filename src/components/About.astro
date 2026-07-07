@@ -1,0 +1,28 @@
+---
+import { site } from '../data/site';
+---
+
+<div class="about">
+  <p class="about__short">{site.bioShort}</p>
+
+  <div class="about__long deep-only">
+    {site.bioLong.map((p) => <p>{p}</p>)}
+  </div>
+</div>
+
+<style>
+  .about {
+    max-width: 70ch;
+  }
+  .about__short {
+    font-size: var(--fs-md);
+    color: var(--text);
+    line-height: var(--lh-normal);
+  }
+  .about__long {
+    margin-top: var(--sp-5);
+    display: grid;
+    gap: var(--sp-4);
+    color: var(--text-dim);
+  }
+</style>

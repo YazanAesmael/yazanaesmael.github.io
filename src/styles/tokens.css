@@ -1,0 +1,193 @@
+/* =========================================================================
+   DESIGN TOKENS + BASE
+   One file to restyle the whole site. Colors, type, spacing, radii live here.
+   Dark by default; light is applied automatically from the OS preference.
+   ========================================================================= */
+
+:root {
+  /* Palette — dark (default) */
+  --bg: #0b0c0e;
+  --bg-elev: #111317;
+  --surface: #14171c;
+  --surface-2: #191d23;
+  --border: #23272e;
+  --border-strong: #313742;
+
+  --text: #eef1f5;
+  --text-dim: #aab2bd;
+  --text-mute: #79828e;
+
+  --accent: #8b7bff;
+  --accent-2: #b3a8ff;
+  --accent-contrast: #0b0c0e;
+  --accent-glow: rgba(139, 123, 255, 0.14);
+
+  /* Status */
+  --status-live: #37d399;
+  --status-dev: #f0b03a;
+  --status-oss: #7cc0ff;
+  --status-private: #8b93a0;
+
+  /* Type */
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code',
+    Menlo, Consolas, monospace;
+
+  --fs-xs: 0.78rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: clamp(2.4rem, 6vw, 3.75rem);
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.35;
+  --lh-normal: 1.6;
+
+  /* Space */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+
+  /* Radii + shadow */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-full: 999px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.24);
+
+  --maxw: 960px;
+  --maxw-wide: 1120px;
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #fbfbfc;
+    --bg-elev: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f4f5f7;
+    --border: #e6e8ec;
+    --border-strong: #d5d9e0;
+
+    --text: #14171c;
+    --text-dim: #4a515b;
+    --text-mute: #79828e;
+
+    --accent: #5b46e5;
+    --accent-2: #6f5bf0;
+    --accent-contrast: #ffffff;
+    --accent-glow: rgba(91, 70, 229, 0.1);
+
+    --status-live: #10a877;
+    --status-dev: #c07d10;
+    --status-oss: #2f7fd1;
+    --status-private: #6b7280;
+
+    --shadow: 0 1px 2px rgba(20, 23, 28, 0.06),
+      0 10px 30px rgba(20, 23, 28, 0.07);
+
+    color-scheme: light;
+  }
+}
+
+/* ---- reset ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  line-height: var(--lh-tight);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* ---- layout helpers ---- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--sp-5);
+}
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* =========================================================================
+   CONCISE  <->  DEEP  view mechanism
+   All deep content is in the DOM (SEO-safe); concise view just hides it.
+   ========================================================================= */
+[data-view='concise'] .deep-only {
+  display: none !important;
+}
+/* A gentle reveal when switching to deep view (respects reduced-motion above) */
+[data-view='deep'] .deep-only {
+  animation: deep-reveal 0.35s ease both;
+}
+@keyframes deep-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

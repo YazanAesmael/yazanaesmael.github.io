@@ -1,0 +1,192 @@
+---
+import '@fontsource-variable/geist';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/700.css';
+import '../styles/tokens.css';
+import { site } from '../data/site';
+import ViewToggle from '../components/ViewToggle.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = site.seo.title, description = site.seo.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://yazan.work').href;
+---
+
+<!doctype html>
+<html lang="en" data-view="concise">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="author" content={site.name} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0b0c0e" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="yazan.work" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Set concise/deep view before first paint (no flash). Concise is the
+         default and is fully self-sufficient; deep is the bonus. -->
+    <script is:inline>
+      (function () {
+        try {
+          var url = new URL(window.location.href);
+          var q = url.searchParams.get('view');
+          var stored = localStorage.getItem('view');
+          var view =
+            q === 'deep' || q === 'concise' ? q : stored === 'deep' ? 'deep' : 'concise';
+          document.documentElement.setAttribute('data-view', view);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- JSON-LD: helps recruiters' tools + search understand who this is -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: site.name,
+        jobTitle: site.title,
+        url: 'https://yazan.work',
+        email: `mailto:${site.links.email}`,
+        sameAs: [site.links.github, site.links.linkedin],
+      })}
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="site-header__inner container">
+        <a class="brand" href="/">
+          <span class="brand__mark mono">y.work</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#experience" class="nav__wide">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <ViewToggle />
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <span class="mono">© 2026 {site.name}</span>
+        <span class="site-footer__links">
+          <a href={site.links.github} rel="me noopener" target="_blank">GitHub</a>
+          <a href={site.links.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+          <a href={`mailto:${site.links.email}`}>Email</a>
+        </span>
+      </div>
+    </footer>
+
+    <style>
+      .skip {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: var(--accent);
+        color: var(--accent-contrast);
+        padding: 0.6rem 1rem;
+        border-radius: 0 0 var(--r-sm) 0;
+        z-index: 100;
+      }
+      .skip:focus {
+        left: 0;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        backdrop-filter: saturate(140%) blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .site-header__inner {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-4);
+        height: 3.75rem;
+      }
+      .brand__mark {
+        font-weight: 700;
+        font-size: var(--fs-sm);
+        letter-spacing: -0.03em;
+        padding: 0.3rem 0.5rem;
+        border: 1px solid var(--border-strong);
+        border-radius: var(--r-sm);
+        color: var(--text);
+      }
+      .nav {
+        display: flex;
+        gap: clamp(0.75rem, 3vw, 1.75rem);
+        margin-left: auto;
+        font-size: var(--fs-sm);
+        color: var(--text-dim);
+      }
+      .nav a:hover {
+        color: var(--text);
+      }
+      .nav__wide {
+        display: none;
+      }
+      @media (min-width: 640px) {
+        .nav__wide {
+          display: inline;
+        }
+      }
+      /* On small screens the section nav crowds the view toggle (the key
+         control). Hide the nav there — it's a single scrolling page anyway —
+         and keep the toggle pinned right. */
+      @media (max-width: 559px) {
+        .nav {
+          display: none;
+        }
+        .site-header__inner :global(.viewtoggle) {
+          margin-left: auto;
+        }
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--border);
+        margin-top: var(--sp-9);
+        padding-block: var(--sp-6);
+        color: var(--text-mute);
+        font-size: var(--fs-sm);
+      }
+      .site-footer__inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-4);
+        justify-content: space-between;
+      }
+      .site-footer__links {
+        display: flex;
+        gap: var(--sp-5);
+      }
+      .site-footer__links a:hover {
+        color: var(--text);
+      }
+    </style>
+  </body>
+</html>

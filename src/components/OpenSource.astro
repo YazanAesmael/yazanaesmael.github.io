@@ -1,0 +1,90 @@
+---
+import { oss } from '../data/oss';
+---
+
+<div class="oss">
+  {
+    oss.map((item) => (
+      <a class="oss__card" href={item.url} target="_blank" rel="noopener">
+        <div class="oss__head">
+          <h3 class="oss__name">{item.name}</h3>
+          {item.stars !== undefined && (
+            <span class="oss__stars mono" aria-label={`${item.stars} GitHub stars`}>
+              ★ {item.stars}
+            </span>
+          )}
+        </div>
+        <p class="oss__desc">{item.description}</p>
+        <ul class="oss__tech mono">
+          {item.tech.map((t) => (
+            <li>{t}</li>
+          ))}
+        </ul>
+        <span class="oss__link mono">View on GitHub ↗</span>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .oss {
+    display: grid;
+    gap: var(--sp-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .oss {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .oss__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-5);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+  .oss__card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .oss__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-2);
+  }
+  .oss__name {
+    font-size: var(--fs-md);
+  }
+  .oss__stars {
+    font-size: var(--fs-xs);
+    color: var(--status-dev);
+  }
+  .oss__desc {
+    color: var(--text-dim);
+    font-size: var(--fs-sm);
+    flex: 1;
+  }
+  .oss__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0;
+    list-style: none;
+  }
+  .oss__tech li {
+    font-size: 0.72rem;
+    color: var(--text-mute);
+    padding: 0.15rem 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+  }
+  .oss__link {
+    font-size: var(--fs-xs);
+    color: var(--accent-2);
+  }
+</style>

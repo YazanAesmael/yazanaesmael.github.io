@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Skills from '../components/Skills.astro';
+import OpenSource from '../components/OpenSource.astro';
+import Contact from '../components/Contact.astro';
+
+// Featured projects, ordered by `tier` (1 = flagship). Each case-study body
+// is rendered once here and slotted into its card.
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.tier - b.data.tier);
+
+const rendered = await Promise.all(
+  projects.map(async (entry) => ({ entry, Content: (await render(entry)).Content }))
+);
+---
+
+<Base>
+  <Hero />
+
+  <Section
+    id="work"
+    index="01"
+    title="Selected work"
+    note="Toggle Deep dive for full case studies"
+  >
+    <div class="work-grid">
+      {
+        rendered.map(({ entry, Content }) => (
+          <ProjectCard id={entry.id} data={entry.data}>
+            <Content />
+          </ProjectCard>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="about" index="02" title="About">
+    <About />
+  </Section>
+
+  <Section id="experience" index="03" title="Experience">
+    <Experience />
+  </Section>
+
+  <Section id="stack" index="04" title="Stack">
+    <Skills />
+  </Section>
+
+  <Section id="open-source" index="05" title="Open source">
+    <OpenSource />
+  </Section>
+
+  <Section id="contact" index="06" title="Contact">
+    <Contact />
+  </Section>
+</Base>
+
+<style>
+  .work-grid {
+    display: grid;
+    gap: var(--sp-5);
+  }
+</style>

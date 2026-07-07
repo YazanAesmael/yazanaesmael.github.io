@@ -1,0 +1,64 @@
+---
+import { skills } from '../data/skills';
+---
+
+<div class="skills">
+  {
+    skills.map((group) => (
+      <div class="skills__group">
+        <h3 class="skills__title mono">{group.title}</h3>
+        <ul class="skills__list">
+          {group.items.map((item) => (
+            <li class="skills__item">{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .skills {
+    display: grid;
+    gap: var(--sp-5);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .skills {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 940px) {
+    .skills {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .skills__group {
+    padding: var(--sp-5);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+  }
+  .skills__title {
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-2);
+    margin-bottom: var(--sp-4);
+  }
+  .skills__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    padding: 0;
+    list-style: none;
+  }
+  .skills__item {
+    font-size: var(--fs-sm);
+    color: var(--text-dim);
+    padding: 0.25rem 0.6rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+  }
+</style>

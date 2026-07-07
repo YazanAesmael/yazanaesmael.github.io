@@ -1,0 +1,138 @@
+---
+import { site } from '../data/site';
+const { hero, availability, location, links } = site;
+---
+
+<section class="hero">
+  <div class="container hero__inner">
+    {
+      availability.open && (
+        <p class="hero__avail">
+          <span class="hero__avail-dot" aria-hidden="true" />
+          {availability.text}
+        </p>
+      )
+    }
+
+    <p class="hero__kicker mono">{hero.kicker}</p>
+    <h1 class="hero__headline">{hero.headline}</h1>
+    <p class="hero__sub">{hero.sub}</p>
+
+    <div class="hero__cta">
+      <a class="btn btn--primary" href={`mailto:${links.email}`}>Get in touch</a>
+      <a class="btn" href={links.github} target="_blank" rel="me noopener">GitHub</a>
+      <a class="btn" href={links.linkedin} target="_blank" rel="me noopener">LinkedIn</a>
+    </div>
+
+    <ul class="hero__proof mono" aria-label="Highlights">
+      <li>100,000+ users led</li>
+      <li>Live on the App Store</li>
+      <li>Kotlin Multiplatform, end to end</li>
+      {location.show && <li>{location.text}</li>}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(3.5rem, 10vw, 6.5rem) var(--sp-7);
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(60% 60% at 15% 0%, var(--accent-glow), transparent 70%);
+  }
+  .hero__inner {
+    max-width: 780px;
+  }
+  .hero__avail {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--fs-sm);
+    color: var(--text-dim);
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-full);
+    background: var(--surface);
+    margin-bottom: var(--sp-5);
+  }
+  .hero__avail-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-live);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--status-live) 25%, transparent);
+  }
+  .hero__kicker {
+    color: var(--accent-2);
+    font-size: var(--fs-sm);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--sp-4);
+  }
+  .hero__headline {
+    font-size: var(--fs-3xl);
+    letter-spacing: -0.03em;
+    max-width: 16ch;
+  }
+  .hero__sub {
+    margin-top: var(--sp-5);
+    font-size: var(--fs-md);
+    color: var(--text-dim);
+    max-width: 60ch;
+    line-height: var(--lh-normal);
+  }
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: var(--sp-6);
+  }
+  .hero__proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2) var(--sp-5);
+    margin-top: var(--sp-6);
+    padding: 0;
+    list-style: none;
+    color: var(--text-mute);
+    font-size: var(--fs-xs);
+  }
+  .hero__proof li {
+    position: relative;
+    padding-left: 1.1rem;
+  }
+  .hero__proof li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* shared button style (used across the site) */
+  :global(.btn) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--fs-sm);
+    font-weight: 550;
+    padding: 0.6rem 1.05rem;
+    border-radius: var(--r-md);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    background: var(--surface);
+    transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  }
+  :global(.btn:hover) {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  :global(.btn--primary) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+    font-weight: 600;
+  }
+  :global(.btn--primary:hover) {
+    background: var(--accent-2);
+    border-color: var(--accent-2);
+  }
+</style>

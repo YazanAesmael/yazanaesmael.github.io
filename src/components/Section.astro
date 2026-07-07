@@ -1,0 +1,53 @@
+---
+interface Props {
+  id: string;
+  index: string;
+  title: string;
+  note?: string;
+}
+const { id, index, title, note } = Astro.props;
+---
+
+<section class="section" id={id}>
+  <div class="container">
+    <header class="section__head">
+      <h2 class="section__title">
+        <span class="section__index mono">{index}</span>
+        {title}
+      </h2>
+      {note && <p class="section__note">{note}</p>}
+    </header>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-block: var(--sp-8);
+  }
+  .section__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--sp-3) var(--sp-5);
+    margin-bottom: var(--sp-6);
+    padding-bottom: var(--sp-4);
+    border-bottom: 1px solid var(--border);
+  }
+  .section__title {
+    font-size: var(--fs-2xl);
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-3);
+  }
+  .section__index {
+    font-size: var(--fs-sm);
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .section__note {
+    font-size: var(--fs-sm);
+    color: var(--text-mute);
+    margin-left: auto;
+  }
+</style>
