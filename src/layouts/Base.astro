@@ -13,6 +13,7 @@ interface Props {
 }
 const { title = site.seo.title, description = site.seo.description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://yazan.work').href;
+const ogImage = new URL('/og.png', Astro.site ?? 'https://yazan.work').href;
 ---
 
 <!doctype html>
@@ -33,9 +34,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://yazan.work'
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="yazan.work" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Yazan Aesmael — Lead Android & Kotlin Multiplatform Engineer"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Set concise/deep view before first paint (no flash). Concise is the
          default and is fully self-sufficient; deep is the bonus. -->
