@@ -15,7 +15,7 @@ export type Role = {
 
 export const experience: Role[] = [
   {
-    role: 'Lead Android Engineer',
+    role: 'Lead Software Engineer',
     company: 'Lifease Solutions',
     dates: 'Nov 2023 – present',
     type: 'Hybrid · full-time',
