@@ -8,7 +8,7 @@ export type SkillGroup = { title: string; items: string[] };
 export const skills: SkillGroup[] = [
   {
     title: 'Languages',
-    items: ['Kotlin', 'Java', 'Swift', 'TypeScript', 'C++ (embedded)', 'Python'],
+    items: ['Kotlin', 'Swift', 'C++ (embedded)', 'Python'],
   },
   {
     title: 'Mobile & Multiplatform',
@@ -87,7 +87,9 @@ export const skills: SkillGroup[] = [
     title: 'DevOps & Quality',
     items: [
       'GitHub Actions',
-      'GitLab CI',
+      'Continuous Integration',
+      'Continuous Testing',
+      'Continuous Delivery',
       'TestFlight',
       'Play Store',
       'SonarQube',

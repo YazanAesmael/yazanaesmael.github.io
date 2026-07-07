@@ -18,7 +18,7 @@ export const experience: Role[] = [
     role: 'Lead Android Engineer',
     company: 'Lifease Solutions',
     dates: 'Nov 2023 – present',
-    type: 'Remote · full-time',
+    type: 'Hybrid · full-time',
     summary:
       'Lead frontend engineer (Android & iOS) on CricRadio, a live cricket app with 100,000+ users — driving its migration to Kotlin Multiplatform + Compose Multiplatform while it keeps shipping to production.',
     details: [
@@ -31,7 +31,7 @@ export const experience: Role[] = [
   {
     role: 'Independent Engineer & Consultant',
     company: 'Freelance',
-    dates: 'Dec 2023 – present',
+    dates: 'Mar 2023 – present',
     type: 'Remote · contract',
     summary:
       'Senior mobile contract work across enterprise Android, cross-platform ports, and authorized Android security assessments — delivered under NDA and presented here only in anonymized terms.',
@@ -45,7 +45,7 @@ export const experience: Role[] = [
     role: 'Android Engineer',
     company: 'TestRight Nanosystems',
     dates: 'Jul 2023 – Aug 2023',
-    type: 'Remote',
+    type: 'On-site · Delhi, India',
     summary:
       'Built an end-to-end biotech data-capture system — both the Android client and the ESP32 firmware in C++ for low-latency telemetry.',
     details: [
@@ -59,5 +59,5 @@ export const education = {
   degree: 'B.Tech, Computer Science & Engineering (Information Technology)',
   school: 'Kalinga Institute of Industrial Technology (KIIT)',
   location: 'Bhubaneswar, India',
-  year: '2023',
+  year: '2019 – 2023',
 };
