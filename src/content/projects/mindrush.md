@@ -1,9 +1,9 @@
 ---
 name: Mindrush
 tagline: A real-time 1v1 brain game where two players race the same puzzle head-to-head — fastest mind wins.
-summary: Built solo and live on the App Store. The hard part is trust — no client is ever believed. The server re-simulates every run through a shared deterministic engine, so scores, duels, and bots all pass through one authority.
+summary: Built solo and live on both the App Store and Google Play. The hard part is trust — no client is ever believed. The server re-simulates every run through a shared deterministic engine, so scores, duels, and bots all pass through one authority.
 role: Solo — clients, backend, realtime infra, game design, and launch
-status: Live on the iOS App Store
+status: Live on the App Store and Google Play
 statusKind: live
 year: '2026'
 platforms: [iOS, Android]
@@ -19,13 +19,15 @@ stack:
     kotlin-inject,
   ]
 metrics:
-  - Live on the iOS App Store
-  - One KMP codebase → two platforms + a full backend
+  - Live on the App Store and Google Play
+  - One KMP codebase shipped to both stores + a full backend
   - 300+ automated tests across client and server
   - Server-authoritative scoring — no trusted client
 links:
   - label: App Store
     url: https://apps.apple.com/app/id6780897895
+  - label: Google Play
+    url: https://play.google.com/store/apps/details?id=game.brainco
 highlights:
   - Server-authoritative anti-cheat by re-simulation — the client submits only its input trace, and the server replays it through a shared deterministic match engine, discarding client-reported scores and rejecting superhuman (<120ms) and zero-variance bot cadences.
   - A cross-platform real-time 1v1 duel built on a Postgres-authoritative lobby state machine, with a two-phase compare-and-set start protocol that provably fires once and can't strand a player in a half-started match.
@@ -35,11 +37,11 @@ highlights:
 
 ## Overview
 
-Mindrush is a competitive "match under pressure" brain game for iOS, with an
-Android build from the same codebase. The core loop is a real-time 1v1 duel: two
-players race the same puzzle at the same moment, and the faster, more accurate
-player wins. I built the whole thing solo — clients, backend, realtime layer, and
-the launch.
+Mindrush is a competitive "match under pressure" brain game, live on both the App
+Store and Google Play from a single shared codebase. The core loop is a real-time
+1v1 duel: two players race the same puzzle at the same moment, and the faster, more
+accurate player wins. I built the whole thing solo — clients, backend, realtime
+layer, and the launch.
 
 ## The problem
 
