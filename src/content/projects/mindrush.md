@@ -24,6 +24,8 @@ metrics:
   - 300+ automated tests across client and server
   - Server-authoritative scoring — no trusted client
 links:
+  - label: Website
+    url: https://mindrush.site
   - label: App Store
     url: https://apps.apple.com/app/id6780897895
   - label: Google Play
