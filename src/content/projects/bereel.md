@@ -8,6 +8,7 @@ statusKind: development
 year: 2025 – present
 platforms: [iOS, Android]
 tier: 4
+featured: false   # kept for reference; not served on the site
 stack:
   [
     Compose Multiplatform,
